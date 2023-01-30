@@ -3,7 +3,6 @@ import AuthController, {
   loginController,
   logoutController,
 } from "../controllers/auth.controllers";
-import protectedMiddleware from "../middlewares/protected.middleware";
 import passport from "passport";
 
 export const authRouter = Router();

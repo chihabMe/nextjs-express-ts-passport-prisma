@@ -1,13 +1,14 @@
 import { authRouter } from "../routes/auth.routes";
 import bodyParser from "body-parser";
 import errorsMiddleware from "../middlewares/errors.middleware";
-import authMiddleware from "../middlewares/auth.middleware";
 import sessionMiddleware from "../middlewares/session.middleware";
 import express, { Express, Request, Response, Router } from "express";
 import "../config/passport";
 import passport from "passport";
 import notFoundMiddleware from "../middlewares/notFound.middleware";
 import { accountsRouter } from "../routes/accounts.routes";
+import next from "next";
+import { parse } from "url";
 
 export const createServer = () => {
   const app = express();
@@ -32,8 +33,18 @@ const registerMiddlewares = (app: Express) => {
   //app.use(authMiddleware);
 };
 const setUpApp = (app: Express) => {
-  registerMiddlewares(app);
-  registerRoutes(app);
-  app.use(errorsMiddleware);
-  app.use(notFoundMiddleware);
+  const dev = process.env.NODE_ENV != "production";
+  console.log("dev?", dev);
+  const nextApp = next({ dev });
+  const handle = nextApp.getRequestHandler();
+  nextApp.prepare().then(() => {
+    registerMiddlewares(app);
+    registerRoutes(app);
+    app.get("*", (req, res) => {
+      const url = parse(req.url, true);
+      return handle(req, res, url);
+    });
+    app.use(errorsMiddleware);
+    app.use(notFoundMiddleware);
+  });
 };
