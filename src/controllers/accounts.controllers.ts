@@ -1,9 +1,10 @@
 import { Router } from "express";
 import BaseController from "../utils/base.controller";
 import { prisma } from "../core/db";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { createUserService, validateUser } from "../services/accounts.services";
 import { hashPassword } from "../lib/auth.libs";
+import httpStatus from "http-status";
 interface accountsPostReqPropsInterface {
   email: string;
   username: string;
@@ -33,8 +34,13 @@ class AccountsController extends BaseController {
   }
 }
 
-export const accountsRouter = Router();
-
 const accountsController = new AccountsController();
 
-accountsRouter.all("", accountsController.all);
+export const meController = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { password: _, ...user } = { ...req.user };
+  return res.status(httpStatus.OK).json(user);
+};

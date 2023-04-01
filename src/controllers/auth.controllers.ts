@@ -13,9 +13,7 @@ export default class AuthController extends BaseController {
   objects = user;
 
   public async get(req: Request, res: Response) {
-    return res
-      .status(200)
-      .json({ data: this.objects, views: req.session.views });
+    return res.status(200).json({ data: this.objects });
   }
 }
 
@@ -25,29 +23,18 @@ export const loginController = async (
   next: NextFunction
 ) => {
   const { email, password } = req.body;
-
   try {
     const { user, isValid } = await User.checkPassword({
       email,
       password,
     });
     if (!isValid || !user) return res.status(400).json("failled");
-    req.session.user = user;
-    req.session.isAuthenticated = true;
     res.status(200).json("you are logged in ");
   } catch (err) {
     next(err);
   }
 };
 
-export const meController = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const { password: _, ...user } = { ...req.session.user };
-  return res.status(httpStatus.OK).json(user);
-};
 export const logoutController = (
   req: Request,
   res: Response,
@@ -55,5 +42,10 @@ export const logoutController = (
 ) => {
   // req.session.user = undefined;
   // req.session.isAuthenticated = false;
-  return res.status(httpStatus.OK).json();
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    return res.status(httpStatus.OK).json("logged out");
+  });
 };

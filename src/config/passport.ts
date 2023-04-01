@@ -31,6 +31,9 @@ passport.serializeUser((user, cb) => cb(null, user.id));
 passport.deserializeUser((userId: string, cb) => {
   process.nextTick(async () => {
     const userFromDB = await findUserById(userId);
+    // if (!userFromDB) return cb(null, false);
+
+    // const { password: _, ...userWihtoutPassword } = { ...userFromDB };
     return cb(null, userFromDB);
   });
 });
