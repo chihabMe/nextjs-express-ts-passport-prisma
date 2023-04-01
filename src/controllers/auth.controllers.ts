@@ -45,8 +45,15 @@ export const meController = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.session.isAuthenticated || !req.session.user)
-    return res.status(httpStatus.UNAUTHORIZED).json(httpStatus["401_MESSAGE"]);
   const { password: _, ...user } = { ...req.session.user };
   return res.status(httpStatus.OK).json(user);
+};
+export const logoutController = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  // req.session.user = undefined;
+  // req.session.isAuthenticated = false;
+  return res.status(httpStatus.OK).json();
 };

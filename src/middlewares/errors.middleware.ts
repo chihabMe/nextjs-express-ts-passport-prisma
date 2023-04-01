@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import httpStatus from "http-status";
 
 export default (
   err: Error,
@@ -7,5 +8,5 @@ export default (
   next: NextFunction
 ) => {
   console.error(err);
-  res.status(400).json("bad requrest");
+  res.status(httpStatus.INTERNAL_SERVER_ERROR).json(httpStatus["500_MESSAGE"]);
 };

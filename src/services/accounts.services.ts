@@ -56,3 +56,18 @@ export const validateUser = async ({
     errors,
   };
 };
+
+export const findUserByEmail = async (email: string) => {
+  return prisma.user.findFirst({
+    where: {
+      email,
+    },
+  });
+};
+export const findUserById = async (id: string) => {
+  return prisma.user.findFirst({
+    where: {
+      id,
+    },
+  });
+};
