@@ -30,7 +30,7 @@ const LoginPage = () => {
           <input
             onChange={handleChange}
             name="email"
-            types="email"
+            type="email"
             placeholder="enter your email"
           />
         </div>
@@ -38,7 +38,7 @@ const LoginPage = () => {
           <input
             onChange={handleChange}
             name="password"
-            types="password"
+            type="password"
             placeholder="enter your password"
           />
         </div>

@@ -9,6 +9,7 @@ import notFoundMiddleware from "../middlewares/notFound.middleware";
 import { accountsRouter } from "../routes/accounts.routes";
 import next from "next";
 import { parse } from "url";
+import helmet from "helmet";
 
 export const createServer = () => {
   const app = express();
