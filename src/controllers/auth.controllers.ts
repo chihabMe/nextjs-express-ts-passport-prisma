@@ -23,13 +23,19 @@ export const loginController = async (
   next: NextFunction
 ) => {
   const { email, password } = req.body;
+  if (!email || !password)
+    return res
+      .status(httpStatus.BAD_REQUEST)
+      .json("an email and password are requried");
   try {
     const { user, isValid } = await User.checkPassword({
       email,
       password,
     });
-    if (!isValid || !user) return res.status(400).json("failled");
-    res.status(200).json("you are logged in ");
+    if (!isValid || !user)
+      return res.status(httpStatus.BAD_REQUEST).json("failled");
+
+    req.login(user, (err) => res.status(200).json("you are logged in "));
   } catch (err) {
     next(err);
   }
