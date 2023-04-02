@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@heroicons/react': ^2.0.17
   '@prisma/client': ^4.12.0
   '@types/bcrypt': ^5.0.0
   '@types/body-parser': ^1.19.2
@@ -16,6 +17,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.57.0
   '@typescript-eslint/parser': ^5.57.0
   autoprefixer: ^10.4.14
+  axios: ^1.3.4
   bcrypt: ^5.1.0
   body-parser: ^1.20.2
   dotenv: ^16.0.3
@@ -29,6 +31,7 @@ specifiers:
   jest: ^29.5.0
   morgan: ^1.10.0
   next: 13.2.4
+  nextjs-progressbar: ^0.0.16
   nodemon: ^2.0.22
   passport: ^0.6.0
   passport-local: ^1.0.0
@@ -43,10 +46,12 @@ specifiers:
   ts-node: ^10.9.1
 
 dependencies:
+  '@heroicons/react': 2.0.17_react@18.2.0
   '@prisma/client': 4.12.0_prisma@4.11.0
   '@types/bcrypt': 5.0.0
   '@types/react': 18.0.31
   '@types/react-dom': 18.0.11
+  axios: 1.3.4
   bcrypt: 5.1.0
   body-parser: 1.20.2
   dotenv: 16.0.3
@@ -59,6 +64,7 @@ dependencies:
   http-status: 1.6.2
   morgan: 1.10.0
   next: 13.2.4_hrdbe576m4w26u2yfpqpvbxyky
+  nextjs-progressbar: 0.0.16_next@13.2.4+react@18.2.0
   passport: 0.6.0
   passport-local: 1.0.0
   react: 18.2.0
@@ -453,6 +459,14 @@ packages:
   /@eslint/js/8.37.0:
     resolution: {integrity: sha512-x5vzdtOOGgFVDCUs81QRB2+liax8rFg3+7hqM+QhBG0/G3F1ZsoYl97UrqgHgQ9KKT7G6c4V+aTUCgu/n22v1A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  /@heroicons/react/2.0.17_react@18.2.0:
+    resolution: {integrity: sha512-90GMZktkA53YbNzHp6asVEDevUQCMtxWH+2UK2S8OpnLEu7qckTJPhNxNQG52xIR1WFTwFqtH6bt7a60ZNcLLA==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -1105,6 +1119,10 @@ packages:
   /@types/node/18.15.10:
     resolution: {integrity: sha512-9avDaQJczATcXgfmMAW3MIWArOO7A+m90vuCFLr8AotWf8igO/mRoYukrk2cqZVtv38tHs33retzHEilM7FpeQ==}
 
+  /@types/nprogress/0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
+    dev: false
+
   /@types/passport-local/1.0.35:
     resolution: {integrity: sha512-K4eLTJ8R0yYW8TvCqkjB0pTKoqfUSdl5PfZdidTjV2ETV3604fQxtY6BHKjQWAx50WUS0lqzBvKv3LoI1ZBPeA==}
     dependencies:
@@ -1496,7 +1514,6 @@ packages:
 
   /asynckit/0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
-    dev: true
 
   /autoprefixer/10.4.14_postcss@8.4.21:
     resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
@@ -1522,6 +1539,16 @@ packages:
   /axe-core/4.6.3:
     resolution: {integrity: sha512-/BQzOX780JhsxDnPpH4ZiyrJAzcd8AfzFPkv+89veFSr1rcMjuq2JDCwypKaPeB6ljHp9KjXhPpjgCvQlWYuqg==}
     engines: {node: '>=4'}
+    dev: false
+
+  /axios/1.3.4:
+    resolution: {integrity: sha512-toYm+Bsyl6VC5wSkfkbbNB6ROv7KY93PEBBL6xyDczaIHasAiv4wPqQ/c4RjoQzipxRD2W5g21cOqQulZ7rHwQ==}
+    dependencies:
+      follow-redirects: 1.15.2
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /axobject-query/3.1.1:
@@ -1839,7 +1866,6 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
-    dev: true
 
   /commander/4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
@@ -2015,7 +2041,6 @@ packages:
   /delayed-stream/1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
-    dev: true
 
   /delegates/1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
@@ -2700,6 +2725,16 @@ packages:
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
 
+  /follow-redirects/1.15.2:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
@@ -2713,7 +2748,6 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
-    dev: true
 
   /formidable/2.1.2:
     resolution: {integrity: sha512-CM3GuJ57US06mlpQ47YcunuUZ9jpm8Vx+P2CGt2j7HpgkKZO/DJYQ0Bobim8G6PFQmK5lOqOOdUXboU+h73A4g==}
@@ -4100,6 +4134,19 @@ packages:
       - babel-plugin-macros
     dev: false
 
+  /nextjs-progressbar/0.0.16_next@13.2.4+react@18.2.0:
+    resolution: {integrity: sha512-GV0fD38EMD3vSDCmkq+tObmoup6QA91a6a9MxGuhJZuRk/9TNsrHGnIQQQ/sggkMkXuT4fBgF6jRjFwScDT3zA==}
+    peerDependencies:
+      next: '>= 6.0.0'
+      react: '>= 16.0.0'
+    dependencies:
+      '@types/nprogress': 0.2.0
+      next: 13.2.4_hrdbe576m4w26u2yfpqpvbxyky
+      nprogress: 0.2.0
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
   /node-addon-api/5.1.0:
     resolution: {integrity: sha512-eh0GgfEkpnoWDq+VY8OyvYhFEzBk6jIYbRKdIlyTiAXIVJ8PyBaKb0rp7oDtoddbdoHWhq8wwr+XZ81F1rpNdA==}
     dev: false
@@ -4179,6 +4226,10 @@ packages:
       console-control-strings: 1.1.0
       gauge: 3.0.2
       set-blocking: 2.0.0
+    dev: false
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
     dev: false
 
   /object-assign/4.1.1:
@@ -4554,6 +4605,10 @@ packages:
     dependencies:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
+    dev: false
+
+  /proxy-from-env/1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
     dev: false
 
   /pstree.remy/1.1.8:

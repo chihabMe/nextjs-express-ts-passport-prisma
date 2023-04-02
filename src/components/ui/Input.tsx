@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 
 interface Props {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  name: strig;
+  name: string;
   type: string;
   placeholder: string;
 }
