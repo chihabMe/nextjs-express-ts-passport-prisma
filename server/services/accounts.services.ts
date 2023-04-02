@@ -1,7 +1,7 @@
 import { prisma } from "../core/db";
 import { User } from "@prisma/client";
 
-const validateUniqueEmail = async (email: string) => {
+export const validateUniqueEmail = async (email: string) => {
   const user = await prisma.user.findFirst({
     where: {
       email,
@@ -9,7 +9,7 @@ const validateUniqueEmail = async (email: string) => {
   });
   return user == null;
 };
-const validateUniqueUsername = async (username: string) => {
+export const validateUniqueUsername = async (username: string) => {
   const user = await prisma.user.findFirst({
     where: {
       username,
@@ -70,4 +70,8 @@ export const findUserById = async (id: string) => {
       id,
     },
   });
+};
+
+export const findAllUsers = async () => {
+  return prisma.user.findMany();
 };

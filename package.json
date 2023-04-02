@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --config ./jest.ts",
-    "dev": "nodemon ",
+    "server:test": "dotenv -e .env.test -- jest --config ./jest.ts",
+    "db:deploy:test": "dotenv -e .env.test -- pnpm db:deploy",
+    "test": "pnpm db:deploy:test && pnpm server:test",
+    "dev": "dotenv -e .env.development -- nodemon ",
     "start": "NODE_ENV=production node ./dist/app.js",
     "web:build": "pnpm next build",
     "server:build": "tsc   --project tsconfig.server.json",
     "build": "pnpm web:build && pnpm server:build",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:migrate": "pnpm prisma migrate dev",
+    "db:deploy": "pnpm prisma migrate deploy",
+    "db:generate": "pnpm prisma generate"
   },
   "keywords": [],
   "author": "",
