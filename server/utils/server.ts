@@ -10,6 +10,7 @@ import { accountsRouter } from "../routes/accounts.routes";
 import next from "next";
 import { parse } from "url";
 import helmet from "helmet";
+import morgan from "morgan";
 
 export const createServer = () => {
   const app = express();
@@ -17,21 +18,26 @@ export const createServer = () => {
   return app;
 };
 const registerRoutes = (app: Express) => {
-  app.use("/auth/", authRouter);
-  app.use("/accounts/", accountsRouter);
+  const apiRouter = Router();
+  //regiser the api routes
+  apiRouter.use(helmet());
+  apiRouter.use("/auth/", authRouter);
+  apiRouter.use("/accounts/", accountsRouter);
+
+  //register the api router
+  app.use("/api/", apiRouter);
 };
 const registerMiddlewares = (app: Express) => {
+  app.use(
+    morgan("tiny", {
+      skip: (req, _) => req.originalUrl.startsWith("/_next/"),
+    })
+  );
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(sessionMiddleware);
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use((req, res, next) => {
-    console.log(req.session);
-    console.log("user:", req.user);
-    next();
-  });
-  //app.use(authMiddleware);
 };
 const setUpApp = (app: Express) => {
   const dev = process.env.NODE_ENV != "production";

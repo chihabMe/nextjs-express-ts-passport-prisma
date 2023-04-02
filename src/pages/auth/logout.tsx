@@ -4,7 +4,12 @@ const LogoutPage = () => {
   const [status, setStatus] = useState(0);
   const router = useRouter();
   useEffect(() => {
-    fetch("/auth/logout/").then((res) => {
+    fetch("/api/auth/logout/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
       setStatus(res.status);
     });
   }, []);

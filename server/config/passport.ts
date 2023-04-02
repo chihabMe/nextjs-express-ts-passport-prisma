@@ -2,8 +2,6 @@ import passport from "passport";
 import Strategy from "passport-local";
 import { findUserByEmail, findUserById } from "../services/accounts.services";
 import { comparePassword } from "../lib/auth.libs";
-import { userInfo } from "os";
-import { User } from "@prisma/client";
 
 const LocalStrategy = Strategy.Strategy;
 

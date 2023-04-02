@@ -1,5 +1,6 @@
 {
   "exclude": [".next", "node_modules"],
   "exec": "ts-node -T --project tsconfig.server.json server/app.ts",
-  "watch": ["./server/**/*.ts"]
+  "ignore": [".next", "node_modules"],
+  "watch": ["server/app.ts", "server/**/*.ts"]
 }

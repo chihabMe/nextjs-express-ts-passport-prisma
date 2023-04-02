@@ -9,7 +9,7 @@ const LoginPage = () => {
   const router = useRouter();
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const response = await fetch("/auth/login/", {
+    const response = await fetch("/api/auth/login/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

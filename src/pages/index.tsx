@@ -7,11 +7,10 @@ const HomePage = () => {
   const [status, setStatus] = useState<number>(0);
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await fetch("/accounts/me/");
+      const response = await fetch("/api/accounts/me/");
       const data = await response.json();
-      console.log(data);
-      setUser(data);
       setStatus(response.status);
+      if (response.status == 200) setUser(data);
     };
     fetchUser();
   }, []);
