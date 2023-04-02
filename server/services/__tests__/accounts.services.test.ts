@@ -7,6 +7,12 @@ const userInfo = {
   username: "chihab",
   email: "chihab@email.com",
   password: "password",
+  id: "random_id",
+};
+const userInfos2 = {
+  username: "chihab_2",
+  email: "chihab_2@email.com",
+  password: "password",
 };
 
 beforeAll(async () => {
@@ -58,5 +64,22 @@ describe("test user services", () => {
     expect(valid).toEqual(false);
     expect(typeof errors.email).toEqual("string");
     expect(typeof errors.username).toEqual("string");
+  });
+  //find the user by the
+  it("it should find the used by using its id ", async () => {
+    const user = await accountsServices.findUserById(userInfo.id);
+    expect(user).not.toBeNull();
+    if (!user) throw new Error("the used must not be null");
+    expect(user.id).toEqual(userInfo.id);
+    expect(user.username).toEqual(userInfo.username);
+    expect(user.email).toEqual(userInfo.email);
+  });
+  it("should create a new user", async () => {
+    const user = await accountsServices.createUserService(userInfos2);
+    expect(user).not.toBeNull();
+    expect(user.email).toEqual(userInfos2.email);
+    expect(user.username).toEqual(userInfos2.username);
+    const users = await accountsServices.findAllUsers();
+    expect(users.length).toEqual(2);
   });
 });

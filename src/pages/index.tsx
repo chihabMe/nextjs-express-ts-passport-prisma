@@ -18,7 +18,7 @@ const HomePage = () => {
     if (status != 0 && status != 200) router.push("/auth/login/");
   }, [status]);
   return (
-    <div>
+    <div className="">
       {user && (
         <div>
           <div>
@@ -26,7 +26,9 @@ const HomePage = () => {
             username:{user.username}
           </div>
           <a href="/auth/logout/">
-            <button>logout</button>
+            <button className="bg-red-500 hover:bg-red-300 text-white rounded-md px-4 py-2 curso-pointer">
+              logout
+            </button>
           </a>
         </div>
       )}

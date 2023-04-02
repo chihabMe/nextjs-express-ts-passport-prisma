@@ -1,3 +1,5 @@
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 const initialState = {
@@ -24,27 +26,28 @@ const LoginPage = () => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
+    <main>
+      <section className="w-full flex justify-center items-center min-h-screen bg-gray-200">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-4 "
+        >
+          <Input
             onChange={handleChange}
             name="email"
             type="email"
             placeholder="enter your email"
           />
-        </div>
-        <div>
-          <input
+          <Input
             onChange={handleChange}
             name="password"
             type="password"
             placeholder="enter your password"
           />
-        </div>
-        <button type="submit">login</button>
-      </form>
-    </div>
+          <Button>login</Button>
+        </form>
+      </section>
+    </main>
   );
 };
 export default LoginPage;
