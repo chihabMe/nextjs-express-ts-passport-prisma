@@ -1,7 +1,10 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { loginSchema } from "@/schemas/auth.schema";
+import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { toFormikValidationSchema } from "zod-formik-adapter";
 const initialState = {
   email: "",
   password: "",
@@ -28,24 +31,27 @@ const LoginPage = () => {
   return (
     <main>
       <section className="w-full flex justify-center items-center min-h-screen bg-gray-200">
-        <form
-          onSubmit={handleSubmit}
-          className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-4 "
+        <Formik
+          initialValues={initialState}
+          onSubmit={(values, actions) => {
+            console.log(values);
+          }}
+          validationSchema={toFormikValidationSchema(loginSchema)}
         >
-          <Input
-            onChange={handleChange}
-            name="email"
-            type="email"
-            placeholder="enter your email"
-          />
-          <Input
-            onChange={handleChange}
-            name="password"
-            type="password"
-            placeholder="enter your password"
-          />
-          <Button>login</Button>
-        </form>
+          {(props) => (
+            <Form
+              onSubmit={handleSubmit}
+              className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-4 "
+            >
+              <Input name="email" placeholder="enter your email" />
+              <Input name="password" placeholder="enter your password" />
+              {console.log(props.errors)}
+              <Button disabled={props.isSubmitting || !props.isValid}>
+                login
+              </Button>
+            </Form>
+          )}
+        </Formik>
       </section>
     </main>
   );

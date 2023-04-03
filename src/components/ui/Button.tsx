@@ -1,13 +1,15 @@
-import { ReactNode } from "react";
-interface Props {
-  children: ReactNode | string;
+import { ButtonHTMLAttributes, ComponentPropsWithRef, ReactNode } from "react";
+interface Props extends ComponentPropsWithRef<"button"> {
   className?: string;
 }
-const Button = ({ children, className }: Props) => {
+const Button = ({ className, disabled, children, ...props }: Props) => {
+  console.log(disabled);
   return (
     <button
-      type="submit"
-      className={` px-2 font-medium text-sm bg-blue-400 transition-all duration-100 hover:bg-blue-300 text-white py-2.5 rounded-md font-medium ${className}`}
+      className={` ${
+        disabled && "opacity-70"
+      } px-2 py-2 rounded-md capitalize bg-blue-400 text-white cursor-pointer ${className}`}
+      {...props}
     >
       {children}
     </button>

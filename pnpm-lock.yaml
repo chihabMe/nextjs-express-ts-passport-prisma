@@ -48,6 +48,7 @@ specifiers:
   ts-jest: ^29.0.5
   ts-node: ^10.9.1
   zod: ^3.21.4
+  zod-formik-adapter: ^1.2.0
 
 dependencies:
   '@heroicons/react': 2.0.17_react@18.2.0
@@ -77,6 +78,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-redux: 8.0.5_yv6psnp2qqrvpsp6xbsm26r4t4
   zod: 3.21.4
+  zod-formik-adapter: 1.2.0_formik@2.2.9+zod@3.21.4
 
 devDependencies:
   '@types/body-parser': 1.19.2
@@ -5721,6 +5723,16 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  /zod-formik-adapter/1.2.0_formik@2.2.9+zod@3.21.4:
+    resolution: {integrity: sha512-62U+Mf8U05pvLsIMUTC1H6d4K5SmsrXM+YgiZhCpPin5GNhnVuXCGySmJCs0FHuTJCBy7Et5Z1i8KF5ffuLttg==}
+    peerDependencies:
+      formik: ^2.2.9
+      zod: ^3.14.4
+    dependencies:
+      formik: 2.2.9_react@18.2.0
+      zod: 3.21.4
+    dev: false
 
   /zod/3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
