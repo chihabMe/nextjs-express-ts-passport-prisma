@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=16.14 <18"
+  },
   "scripts": {
     "server:test": "dotenv -e .env.test -- jest --config ./jest.ts",
     "db:deploy:test": "dotenv -e .env.test -- pnpm db:deploy",
@@ -23,6 +26,7 @@
   "dependencies": {
     "@heroicons/react": "^2.0.17",
     "@prisma/client": "^4.12.0",
+    "@reduxjs/toolkit": "^1.9.3",
     "@types/bcrypt": "^5.0.0",
     "@types/react": "18.0.31",
     "@types/react-dom": "18.0.11",
@@ -35,6 +39,7 @@
     "express": "^4.18.2",
     "express-mysql-session": "^3.0.0",
     "express-session": "^1.17.3",
+    "formik": "^2.2.9",
     "helmet": "^6.0.1",
     "http-status": "^1.6.2",
     "morgan": "^1.10.0",
@@ -43,7 +48,8 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-redux": "^8.0.5"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",
