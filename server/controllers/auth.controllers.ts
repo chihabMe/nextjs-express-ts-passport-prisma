@@ -23,6 +23,7 @@ export const loginController = async (
   next: NextFunction
 ) => {
   const { email, password } = req.body;
+  console.log(req.body);
   if (!email || !password)
     return res
       .status(httpStatus.BAD_REQUEST)
