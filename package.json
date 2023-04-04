@@ -17,9 +17,9 @@
     "server:build": "tsc   --project tsconfig.server.json",
     "build": "pnpm web:build && pnpm server:build",
     "lint": "next lint",
-    "db:migrate": "pnpm prisma migrate dev",
-    "db:deploy": "pnpm prisma migrate deploy",
-    "db:generate": "pnpm prisma generate"
+    "db:migrate": "dotenv -e .env.development -- pnpm prisma migrate dev",
+    "db:deploy": "dotenv -e .env.development -- pnpm prisma migrate deploy",
+    "db:generate": "dotenv -e .env.development -- pnpm prisma generate"
   },
   "keywords": [],
   "author": "",
