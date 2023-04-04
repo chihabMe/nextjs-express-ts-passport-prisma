@@ -3,9 +3,9 @@ import { createServer } from "./utils/server";
 
 dotenv.config();
 
-const runServer = () => {
+const runServer = async () => {
   try {
-    const app = createServer();
+    const app = await createServer();
     const port = process.env.PORT ?? 3000;
     app.listen(port, () => console.log(`running on port ${port}`));
   } catch (err) {

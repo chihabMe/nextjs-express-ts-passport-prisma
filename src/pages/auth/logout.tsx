@@ -1,23 +1,23 @@
+import { logoutEndpoint } from "@/config/endpoints";
+import useAuth from "@/hooks/use-auth";
+import useFetch from "@/hooks/use-fetch";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 const LogoutPage = () => {
-  const [status, setStatus] = useState(0);
-  const router = useRouter();
+  const { post, loading, success } = useFetch();
+  const { logout } = useAuth();
+
   useEffect(() => {
-    fetch("/api/auth/logout/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      setStatus(res.status);
+    post({
+      url: logoutEndpoint,
     });
   }, []);
+
   useEffect(() => {
-    if (status == 200) {
-      router.push("/");
+    if (!loading && success) {
+      logout();
     }
-  }, [status]);
+  }, [loading]);
 
   return <div>logging out</div>;
 };

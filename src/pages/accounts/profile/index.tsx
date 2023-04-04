@@ -4,11 +4,13 @@ import IUser from "../../../../server/interfaces/IUser";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import useUser from "@/hooks/use-user";
 
 interface Props {
   profile: IUser;
 }
 const ProfilePage = ({ profile }: Props) => {
+  const user = useUser();
   return (
     <main>
       <div className=" w-full  items-center max-w-sm mx-auto cursor-pointer flex flex-col gap-2">

@@ -18,7 +18,7 @@ const useFetch = <T,>() => {
       url,
     });
 
-  const post = async ({ url, data }: { url: string; data: string }) =>
+  const post = async ({ url, data }: { url: string; data?: string }) =>
     request({
       method: "POST",
       url,
@@ -43,7 +43,7 @@ const useFetch = <T,>() => {
   }: {
     url: string;
     method: "GET" | "POST" | "PUT" | "DELETE";
-    data?: any;
+    data?: string;
   }) => {
     let returnredData: IJSonResponse<T> | null;
     let response;
@@ -80,7 +80,6 @@ const useFetch = <T,>() => {
       returnredData = response.data;
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        console.log("errors", err.response?.data.message);
         setStatus(err.response?.data.statusCode);
         setMessage(err.response?.data.message);
         setErros(err.response?.data.errors);

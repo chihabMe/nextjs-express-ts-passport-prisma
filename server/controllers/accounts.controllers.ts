@@ -51,5 +51,12 @@ export const meController = (
   next: NextFunction
 ) => {
   const { password: _, ...user } = { ...req.user };
-  return res.status(httpStatus.OK).json(user);
+  const jsonReponse: IJSonResponse<IUser> = {
+    message: "user profile",
+    status: "success",
+    statusCode: httpStatus.OK,
+    data: user as IUser,
+  };
+
+  return res.status(jsonReponse.statusCode).json(jsonReponse);
 };

@@ -12,9 +12,18 @@ import { parse } from "url";
 import helmet from "helmet";
 import morgan from "morgan";
 
-export const createServer = () => {
+export const createServer = async () => {
+  const app = express();
+  await setUpApp(app);
+  return app;
+};
+export const createApiServer = () => {
   const app = express();
   setUpApp(app);
+  registerMiddlewares(app);
+  registerRoutes(app);
+  app.use(errorsMiddleware);
+  app.use(notFoundMiddleware);
   return app;
 };
 const registerRoutes = (app: Express) => {
@@ -39,19 +48,22 @@ const registerMiddlewares = (app: Express) => {
   app.use(passport.initialize());
   app.use(passport.session());
 };
-const setUpApp = (app: Express) => {
+const registerErrorsMiddlewares = (app: Express) => {
+  app.use(errorsMiddleware);
+  app.use(notFoundMiddleware);
+};
+const setUpApp = async (app: Express) => {
   const dev = process.env.NODE_ENV != "production";
   console.log("dev?", dev);
   const nextApp = next({ dev });
   const handle = nextApp.getRequestHandler();
-  nextApp.prepare().then(() => {
+  await nextApp.prepare().then(() => {
     registerMiddlewares(app);
     registerRoutes(app);
     app.get("*", (req, res) => {
       const url = parse(req.url, true);
       return handle(req, res, url);
     });
-    app.use(errorsMiddleware);
-    app.use(notFoundMiddleware);
+    registerErrorsMiddlewares(app);
   });
 };
