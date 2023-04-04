@@ -1,40 +1,49 @@
-import { Router } from "express";
-import BaseController from "../utils/base.controller";
-import { prisma } from "../core/db";
 import { Request, Response, NextFunction } from "express";
 import { createUserService, validateUser } from "../services/accounts.services";
 import { hashPassword } from "../lib/auth.libs";
 import httpStatus from "http-status";
-interface accountsPostReqPropsInterface {
-  email: string;
-  username: string;
-  password: string;
-}
+import IJSonResponse from "../interfaces/IJsonResponse";
+import IUser from "../interfaces/IUser";
+import { TypeOf } from "zod";
+import { registerationSchema } from "../../src/schemas/auth.schema";
 
-class AccountsController extends BaseController {
-  objects = prisma.user.findMany();
-  public async post(
-    req: Request<any, any, accountsPostReqPropsInterface>,
-    res: Response
-  ) {
-    try {
-      const { email, username, password } = req.body;
-      const { valid, errors } = await validateUser({ email, username });
-      if (!valid) return res.status(400).json(errors);
-      const user = await createUserService({
-        email,
-        username,
-        password: hashPassword(password),
-      });
-      return res.status(201).json(user);
-    } catch (err) {
-      console.error(err);
-      return res.status(403).json(err);
+export const registerController = async (
+  req: Request<any, any, TypeOf<typeof registerationSchema>>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    let jsonRespone: IJSonResponse<IUser>;
+
+    const { email, username, password } = req.body;
+    const { valid, errors } = await validateUser({ email, username });
+
+    if (!valid) {
+      jsonRespone = {
+        message: "invalid fields",
+        status: "error",
+        statusCode: httpStatus.BAD_REQUEST,
+        errors,
+      };
+      return res.status(jsonRespone.statusCode).json(jsonRespone);
     }
+    const user = await createUserService({
+      email,
+      username,
+      password: hashPassword(password),
+    });
+    const { password: _, ...userWithOutPasssword } = { ...user };
+    jsonRespone = {
+      message: "registerd",
+      status: "success",
+      statusCode: httpStatus.CREATED,
+      data: userWithOutPasssword as IUser,
+    };
+    return res.status(jsonRespone.statusCode).json(jsonRespone);
+  } catch (err) {
+    next(err);
   }
-}
-
-const accountsController = new AccountsController();
+};
 
 export const meController = (
   req: Request,

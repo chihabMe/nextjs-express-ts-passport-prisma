@@ -9,7 +9,7 @@ export const registerationSchema = z
   .object({
     email: z.string().email("Invalid email"),
     username: z.string(),
-    password: z.string(),
+    password: z.string().min(6, "Short password "),
     rePassword: z.string(),
   })
   .refine((data) => data.password === data.rePassword, {

@@ -3,11 +3,10 @@ import Input from "@/components/ui/Input";
 import { loginEndponit } from "@/config/endpoints";
 import useFetch from "@/hooks/use-fetch";
 import { loginSchema } from "@/schemas/auth.schema";
-import axios from "axios";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { toFormikValidationSchema } from "zod-formik-adapter";
+import Link from "next/link";
 const initialState = {
   email: "",
   password: "",
@@ -47,6 +46,12 @@ const LoginPage = () => {
                 <Button disabled={props.isSubmitting || !props.isValid}>
                   login
                 </Button>
+                <Link
+                  href="/auth/register"
+                  className=" block text-center rounded-md capitalize text-blue-400 py-1.5 bg-transparent outline-2 outline font-medium outline-blue-300"
+                >
+                  register
+                </Link>
               </>
             </Form>
           )}

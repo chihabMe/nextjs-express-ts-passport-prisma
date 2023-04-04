@@ -3,6 +3,7 @@ import User from "../models/user.model";
 import BaseController from "../utils/base.controller";
 import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
+import IJSonResponse from "../interfaces/IJsonResponse";
 
 const user = {
   name: "chihab",
@@ -23,20 +24,35 @@ export const loginController = async (
   next: NextFunction
 ) => {
   const { email, password } = req.body;
-  console.log(req.body);
-  if (!email || !password)
-    return res
-      .status(httpStatus.BAD_REQUEST)
-      .json("an email and password are requried");
+  let jsonResponse: IJSonResponse<null>;
   try {
     const { user, isValid } = await User.checkPassword({
       email,
       password,
     });
-    if (!isValid || !user)
-      return res.status(httpStatus.BAD_REQUEST).json("failled");
-
-    req.login(user, (err) => res.status(200).json("you are logged in "));
+    if (!isValid || !user) {
+      jsonResponse = {
+        message: "invalid email or password ",
+        status: "error",
+        statusCode: httpStatus.BAD_REQUEST,
+        errors: {
+          email: "Invalid",
+          password: "Invalid",
+        },
+      };
+      return res.status(jsonResponse.statusCode).json(jsonResponse);
+    }
+    jsonResponse = {
+      message: "you are logged in",
+      status: "success",
+      statusCode: httpStatus.OK,
+    };
+    req.login(user, (err) => {
+      if (!err) {
+        return res.status(jsonResponse.statusCode).json(jsonResponse);
+      }
+      next(err);
+    });
   } catch (err) {
     next(err);
   }
