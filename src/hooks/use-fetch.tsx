@@ -45,9 +45,10 @@ const useFetch = <T,>() => {
     method: "GET" | "POST" | "PUT" | "DELETE";
     data?: any;
   }) => {
+    let returnredData: IJSonResponse<T>;
+    let response;
     setLoading(true);
     try {
-      let response;
       switch (method) {
         case "GET":
           response = await axiosClientInstance.get<IJSonResponse<T>>(url);
@@ -72,11 +73,11 @@ const useFetch = <T,>() => {
         default:
           response = await axiosClientInstance.get<IJSonResponse<T>>(url);
       }
-      console.log("use fetch", response.data);
       setStatus(response.status);
       setData(response.data?.data ?? null);
       setMessage(response.data.message);
       setSucess(true);
+      returnredData = response.data;
     } catch (err) {
       if (axios.isAxiosError(err)) {
         console.log("errors", err.response?.data.message);
@@ -84,10 +85,12 @@ const useFetch = <T,>() => {
         setMessage(err.response?.data.message);
         setErros(err.response?.data.errors);
         setSucess(false);
+        returnredData = err.response?.data;
       }
     }
     setDone(true);
     setLoading(false);
+    return returnredData;
   };
 
   return {

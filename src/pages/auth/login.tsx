@@ -8,7 +8,6 @@ import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { toFormikValidationSchema } from "zod-formik-adapter";
-import IJSonResponse from "../../../server/interfaces/IJsonResponse";
 const initialState = {
   email: "",
   password: "",
@@ -22,11 +21,15 @@ const LoginPage = () => {
       <section className="w-full flex justify-center items-center min-h-screen bg-gray-200">
         <Formik
           initialValues={initialState}
-          onSubmit={(values, actions) => {
-            post({
+          validationSchema={toFormikValidationSchema(loginSchema)}
+          onSubmit={async (values, actions) => {
+            const data = await post({
               url: loginEndponit,
               data: values,
             });
+            if (data?.status == "error") {
+              actions.setErrors(data.errors);
+            }
             actions.setSubmitting(false);
           }}
         >
