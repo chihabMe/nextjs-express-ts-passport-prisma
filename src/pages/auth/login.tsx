@@ -48,7 +48,7 @@ const LoginPage = () => {
                 </Button>
                 <Link
                   href="/auth/register"
-                  className=" block text-center rounded-md capitalize text-blue-400 py-1.5 bg-transparent outline-2 outline font-medium outline-blue-300"
+                  className=" block text-center text-sm rounded-md  text-blue-400 py-1.5 bg-transparent outline-2 outline font-medium outline-blue-300"
                 >
                   register
                 </Link>

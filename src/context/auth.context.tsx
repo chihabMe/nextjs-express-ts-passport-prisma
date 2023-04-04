@@ -20,7 +20,7 @@ const initialState: AuthContextState = {
   isAuthenticated: false,
   loading: true,
   user: null,
-  logout: () => {},
+  logout: () => null,
 };
 export const authContext = createContext(initialState);
 
