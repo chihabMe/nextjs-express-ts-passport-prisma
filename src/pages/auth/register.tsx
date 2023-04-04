@@ -2,7 +2,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { registrationEndpoint } from "@/config/endpoints";
 import useFetch from "@/hooks/use-fetch";
-import { registerationSchema } from "@/schemas/auth.schema";
+import { registerationSchema } from "../../../server/schemas/auth.schema";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { toFormikValidationSchema } from "zod-formik-adapter";
@@ -27,7 +27,7 @@ const RegistrationPage = () => {
               url: registrationEndpoint,
               data: JSON.stringify(values),
             });
-            if (data?.status == "error") {
+            if (data && data?.status == "error") {
               actions.setErrors(data.errors);
             }
             actions.setSubmitting(false);

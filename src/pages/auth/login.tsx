@@ -2,7 +2,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { loginEndponit } from "@/config/endpoints";
 import useFetch from "@/hooks/use-fetch";
-import { loginSchema } from "@/schemas/auth.schema";
+import { loginSchema } from "../../../server/schemas/auth.schema";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { toFormikValidationSchema } from "zod-formik-adapter";
@@ -24,9 +24,9 @@ const LoginPage = () => {
           onSubmit={async (values, actions) => {
             const data = await post({
               url: loginEndponit,
-              data: values,
+              data: JSON.stringify(values),
             });
-            if (data?.status == "error") {
+            if (data && data?.status == "error") {
               actions.setErrors(data.errors);
             }
             actions.setSubmitting(false);

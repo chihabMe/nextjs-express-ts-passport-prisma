@@ -5,7 +5,7 @@ import AuthController, {
 } from "../controllers/auth.controllers";
 import passport from "passport";
 import zodValidatorMiddleware from "../middlewares/zod.body.validator.middleware";
-import { loginSchema } from "../../src/schemas/auth.schema";
+import { loginSchema } from "../schemas/auth.schema";
 
 export const authRouter = Router();
 

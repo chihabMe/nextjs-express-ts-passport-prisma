@@ -1,4 +1,4 @@
-import { registerationSchema } from "../../src/schemas/auth.schema";
+import { registerationSchema } from "../schemas/auth.schema";
 import { Router } from "express";
 import {
   meController,

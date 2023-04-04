@@ -7,7 +7,7 @@ import IJSonResponse from "../interfaces/IJsonResponse";
 const zodValidatorMiddleware =
   (schema: AnyZodObject | ZodEffects<AnyZodObject>) =>
   async (req: Request, res: Response, next: NextFunction) => {
-    let jsonResponse: IJSonResponse;
+    let jsonResponse: IJSonResponse<null>;
     const isValid = await schema.safeParseAsync(req.body);
     if (!isValid.success) {
       jsonResponse = {

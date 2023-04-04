@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=16.14 <18"
+    "node": ">=16.14 <=19.6.0"
   },
   "scripts": {
     "server:test": "dotenv -e .env.test -- jest --config ./jest.ts",
@@ -12,6 +12,7 @@
     "test": "pnpm db:deploy:test && pnpm server:test",
     "dev": "dotenv -e .env.development -- nodemon ",
     "start": "NODE_ENV=production node ./dist/app.js",
+    "start:test": "NODE_ENV=production dotenv -e .env.production -- node ./dist/app.js",
     "web:build": "pnpm next build",
     "server:build": "tsc   --project tsconfig.server.json",
     "build": "pnpm web:build && pnpm server:build",

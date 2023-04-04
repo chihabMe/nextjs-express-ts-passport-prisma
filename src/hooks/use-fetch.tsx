@@ -45,7 +45,7 @@ const useFetch = <T,>() => {
     method: "GET" | "POST" | "PUT" | "DELETE";
     data?: any;
   }) => {
-    let returnredData: IJSonResponse<T>;
+    let returnredData: IJSonResponse<T> | null;
     let response;
     setLoading(true);
     try {
@@ -86,7 +86,7 @@ const useFetch = <T,>() => {
         setErros(err.response?.data.errors);
         setSucess(false);
         returnredData = err.response?.data;
-      }
+      } else returnredData = null;
     }
     setDone(true);
     setLoading(false);

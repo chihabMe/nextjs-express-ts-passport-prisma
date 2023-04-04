@@ -5,7 +5,7 @@ import httpStatus from "http-status";
 import IJSonResponse from "../interfaces/IJsonResponse";
 import IUser from "../interfaces/IUser";
 import { TypeOf } from "zod";
-import { registerationSchema } from "../../src/schemas/auth.schema";
+import { registerationSchema } from "../schemas/auth.schema";
 
 export const registerController = async (
   req: Request<any, any, TypeOf<typeof registerationSchema>>,
