@@ -72,6 +72,7 @@ describe("user registration", () => {
         verified: false,
       },
     });
+    expect(response.body.data.password).toBeUndefined();
   });
 
   //trying to register with an existing email or username

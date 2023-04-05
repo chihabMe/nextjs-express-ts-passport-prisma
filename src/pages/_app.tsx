@@ -10,7 +10,7 @@ import Container from "@/components/wrappers/Container";
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <NextPrograssBar color="blue" />
+      <NextPrograssBar color="#DC373C" />
       <AuthContextProvider>
         <Provider store={store}>
           <Container>
