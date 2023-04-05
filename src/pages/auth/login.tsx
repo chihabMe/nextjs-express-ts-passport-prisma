@@ -35,7 +35,6 @@ const LoginPage = () => {
           {(props) => (
             <Form className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-4 ">
               <>
-                {console.log("errors from the backend", JSON.stringify(errors))}
                 <Input name="email" placeholder="enter your email" />
                 <Input name="password" placeholder="enter your password" />
                 {errors && (

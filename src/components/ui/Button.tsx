@@ -6,9 +6,9 @@ const Button = ({ className, disabled, children, ...props }: Props) => {
   console.log(disabled);
   return (
     <button
-      className={`   ${className} ${
+      className={`   ${
         disabled && "opacity-70"
-      } px-3 transition-all duration-100 font-medium py-2 text-sm rounded-md  bg-primary text-white cursor-pointer`}
+      } px-3 transition-all duration-100 font-medium py-2 text-sm rounded-md  bg-primary text-white cursor-pointer ${className}  `}
       {...props}
     >
       {children}
