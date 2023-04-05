@@ -19,11 +19,9 @@ export const createServer = async () => {
 };
 export const createApiServer = () => {
   const app = express();
-  setUpApp(app);
   registerMiddlewares(app);
   registerRoutes(app);
-  app.use(errorsMiddleware);
-  app.use(notFoundMiddleware);
+  registerErrorsMiddlewares(app);
   return app;
 };
 const registerRoutes = (app: Express) => {

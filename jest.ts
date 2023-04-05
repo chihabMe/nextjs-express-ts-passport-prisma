@@ -2,10 +2,11 @@ import type { Config } from "jest";
 
 const config: Config = {
   verbose: true,
+  silent: false,
   forceExit: true,
   testEnvironment: "node",
   roots: ["./server"],
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: ["./server/**/*.ts"],
   preset: "ts-jest",
   testPathIgnorePatterns: ["./server/types"],

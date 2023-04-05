@@ -20,7 +20,7 @@ export const registerController = async (
 
     if (!valid) {
       jsonRespone = {
-        message: "invalid fields",
+        message: "Invalid fields",
         status: "error",
         statusCode: httpStatus.BAD_REQUEST,
         errors,
@@ -34,7 +34,7 @@ export const registerController = async (
     });
     const { password: _, ...userWithOutPasssword } = { ...user };
     jsonRespone = {
-      message: "registerd",
+      message: "registred",
       status: "success",
       statusCode: httpStatus.CREATED,
       data: userWithOutPasssword as IUser,

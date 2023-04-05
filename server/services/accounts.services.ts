@@ -48,8 +48,8 @@ export const validateUser = async ({
   const isValidEmail = await validateUniqueEmail(email);
   const isValidUsername = await validateUniqueUsername(username);
   const errors: ValidateUserErrors = {};
-  if (!isValidEmail) errors.email = "this email is been used";
-  if (!isValidUsername) errors.username = "this usernmae is been used";
+  if (!isValidEmail) errors.email = "This email is been used";
+  if (!isValidUsername) errors.username = "This usernmae is been used";
   const valid = isValidEmail && isValidUsername;
   return {
     valid,

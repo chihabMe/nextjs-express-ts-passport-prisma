@@ -13,6 +13,6 @@ export const registerationSchema = z
     rePassword: z.string(),
   })
   .refine((data) => data.password === data.rePassword, {
-    message: "Password don't match",
+    message: "Passwords don't match",
     path: ["rePassword"],
   });
