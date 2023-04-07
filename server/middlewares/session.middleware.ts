@@ -17,15 +17,17 @@ const sessionStore = new PrismaSessionStore(prisma, {
   dbRecordIdIsSessionId: true,
   dbRecordIdFunction: undefined,
 });
-
+const isProduction = process.env.NODE_ENV == "production";
 const sessionMiddleware = session({
   secret: process.env.SECRET_KEY ?? "default",
   cookie: {
     maxAge: 60 * 60 * 24 * 15 * 1000,
-    secure: process.env.NODE_ENV == "production",
+    secure: isProduction,
     httpOnly: true,
     path: "/",
     signed: true,
+    domain: process.env.HOST ?? "",
+    sameSite: isProduction ? "strict" : "lax",
   },
   name: "session_id",
   store: sessionStore,
