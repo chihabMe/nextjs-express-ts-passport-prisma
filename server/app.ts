@@ -7,6 +7,7 @@ const runServer = async () => {
   try {
     const app = await createServer();
     const port = process.env.PORT ?? 3000;
+
     app.listen(port, () => console.log(`running on port ${port}`));
   } catch (err) {
     console.error(err);

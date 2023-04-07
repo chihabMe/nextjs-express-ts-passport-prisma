@@ -1,10 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import { createUserService, validateUser } from "../services/accounts.services";
+
 import { hashPassword } from "../lib/auth.libs";
+
 import httpStatus from "http-status";
+
 import IJSonResponse from "../interfaces/IJsonResponse";
 import IUser from "../interfaces/IUser";
 import { TypeOf } from "zod";
+
 import { registerationSchema } from "../schemas/auth.schema";
 
 export const registerController = async (

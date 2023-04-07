@@ -6,6 +6,7 @@ import store from "../store";
 import { AuthContextProvider } from "@/context/auth.context";
 import Header from "@/components/layout/Header";
 import Container from "@/components/wrappers/Container";
+import ToasterWrapper from "@/components/wrappers/ToasterWrapper";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -14,9 +15,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <AuthContextProvider>
         <Provider store={store}>
           <Container>
-            <Header />
-            <Component {...pageProps} />;
+            <ToasterWrapper>
+              <Header />
+              <Component {...pageProps} />;
+            </ToasterWrapper>
           </Container>
+          <Header />
         </Provider>
       </AuthContextProvider>
     </>

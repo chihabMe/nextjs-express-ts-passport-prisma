@@ -17,6 +17,7 @@ export default class BaseController {
   };
   public async get(req: Request, res: Response) {
     const data = await this.objects;
+
     return res.json(data);
   }
   public async post(req: Request, res: Response) {

@@ -7,14 +7,23 @@ import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import Link from "next/link";
+import { useEffect } from "react";
+import { toastError, toastSuccess } from "@/helpers/toasters";
+import toast from "react-hot-toast";
 const initialState = {
   email: "",
   password: "",
 };
 const LoginPage = () => {
   const router = useRouter();
-  const { data, message, post, errors, status, loading, success } =
+  const { data, message, done, post, errors, status, loading, success } =
     useFetch<null>();
+  useEffect(() => {
+    toast.remove();
+    if (!loading && !success && done)
+      toastError("please check your credentials");
+    if (!loading && success && done) toastSuccess("logged in successfully");
+  }, [loading, success]);
   return (
     <main>
       <section className="w-full flex justify-center items-center min-h-screen bg-gray-200">
@@ -37,13 +46,16 @@ const LoginPage = () => {
               <>
                 <Input name="email" placeholder="enter your email" />
                 <Input name="password" placeholder="enter your password" />
-                {errors && (
+                {!success && done && (
                   <span className="text-red-400 font-medium text-sm">
                     - {message}
                   </span>
                 )}
-                <Button disabled={props.isSubmitting || !props.isValid}>
-                  login
+                <Button
+                  loading={loading}
+                  disabled={props.isSubmitting || !props.isValid}
+                >
+                  Login
                 </Button>
                 <Link
                   href="/auth/register"

@@ -7,6 +7,9 @@ import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { toastError, toastSuccess } from "@/helpers/toasters";
 const initialState = {
   username: "",
   email: "",
@@ -15,7 +18,13 @@ const initialState = {
 };
 const RegistrationPage = () => {
   const router = useRouter();
-  const { message, post, errors, loading, success } = useFetch<null>();
+  const { message, post, errors, done, loading, success } = useFetch<null>();
+  useEffect(() => {
+    toast.remove();
+    if (!loading && !success && done)
+      toastError("please check your credentials");
+    if (!loading && success && done) toastSuccess("registred in successfully");
+  }, [loading, success]);
   return (
     <main>
       <section className="w-full flex justify-center items-center min-h-screen bg-gray-200">
@@ -44,12 +53,15 @@ const RegistrationPage = () => {
                   name="rePassword"
                   placeholder="confirm your password"
                 />
-                {errors && (
+                {!success && done && (
                   <span className="text-red-400 font-medium text-sm">
                     - {message}
                   </span>
                 )}
-                <Button disabled={props.isSubmitting || !props.isValid}>
+                <Button
+                  loading={loading}
+                  disabled={props.isSubmitting || !props.isValid}
+                >
                   register
                 </Button>
                 <Link
