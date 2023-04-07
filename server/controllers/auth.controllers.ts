@@ -47,11 +47,13 @@ export const loginController = async (
       status: "success",
       statusCode: httpStatus.OK,
     };
-    req.login(user, (err) => {
-      if (!err) {
-        return res.status(jsonResponse.statusCode).json(jsonResponse);
+    return req.logIn(user, (err) => {
+      if (err) {
+        next(err);
       }
-      next(err);
+      console.log("logged in successfully");
+      console.log(jsonResponse);
+      return res.status(jsonResponse.statusCode).json(jsonResponse);
     });
   } catch (err) {
     next(err);

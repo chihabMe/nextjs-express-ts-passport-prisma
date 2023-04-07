@@ -16,7 +16,6 @@ function UserModel(prismaUser: PrismaClient["user"]) {
           email,
         },
       });
-      console.log("found user ", user);
       const isValid = comparePassword({
         hash: user?.password ?? "",
         password,
