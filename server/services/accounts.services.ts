@@ -1,5 +1,5 @@
 import { prisma } from "../core/db";
-import { User } from "@prisma/client";
+import { User, Prisma } from "@prisma/client";
 
 export const validateUniqueEmail = async (email: string) => {
   const user = await prisma.user.findFirst({
@@ -17,21 +17,9 @@ export const validateUniqueUsername = async (username: string) => {
   });
   return user == null;
 };
-export const createUserService = async ({
-  username,
-  email,
-  password,
-}: {
-  email: string;
-  username: string;
-  password: string;
-}) => {
+export const createUserService = async (data: Prisma.UserCreateInput) => {
   return await prisma.user.create({
-    data: {
-      email,
-      username,
-      password,
-    },
+    data,
   });
 };
 interface ValidateUserErrors {
@@ -74,4 +62,21 @@ export const findUserById = async (id: string) => {
 
 export const findAllUsers = async () => {
   return prisma.user.findMany();
+};
+
+export const findUsersService = async (params: {
+  skip?: number;
+  take?: number;
+  cursor?: Prisma.UserWhereUniqueInput;
+  where: Prisma.UserWhereInput;
+  orderBy: Prisma.UserOrderByWithRelationInput;
+}) => {
+  return await prisma.user.findMany(params);
+};
+
+export const updateUserService = async (params: {
+  where: Prisma.UserWhereUniqueInput;
+  data: Prisma.UserUpdateInput;
+}) => {
+  return prisma.user.update(params);
 };
