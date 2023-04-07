@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { toastError, toastSuccess } from "@/helpers/toasters";
 import toast from "react-hot-toast";
+import { MailIcon, EyeOffIcon, EyeIcon } from "lucide-react";
 const initialState = {
   email: "",
   password: "",
@@ -42,20 +43,24 @@ const LoginPage = () => {
           }}
         >
           {(props) => (
-            <Form className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-3 ">
+            <Form className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-2 ">
               <>
                 <Input
+                  icon={<MailIcon className="w-4 h-4 text-text " />}
                   variant="md"
                   label="email"
                   name="email"
                   placeholder="Enter  email"
                 />
                 <Input
+                  icon={<EyeOffIcon className="w-4 h-4 text-text " />}
+                  icon2={<EyeIcon className="w-4 h-4 text-text " />}
                   label="password"
                   name="password"
                   variant="md"
                   type="password"
                   placeholder="Enter  password"
+                  passwordInput
                 />
                 {!success && done && (
                   <span className="text-red-400 font-medium text-sm">
@@ -64,23 +69,20 @@ const LoginPage = () => {
                 )}
                 <Button
                   loading={loading}
-                  className="capitalize my-1"
+                  size="md"
+                  className="capitalize my-2"
                   disabled={props.isSubmitting || !props.isValid}
                 >
                   log in
                 </Button>
                 <div className="w-full flex justify-center  ">
                   <Link href="/auth/password-reset">
-                    <span className="capitalize text-primary text-sm  trsnaition-all duration-100 hover:opacity-70   cursor-pointer py-1 ">
-                      forgot your password?
-                    </span>
+                    <span className="">forgot your password?</span>
                   </Link>
                 </div>
-                <Link
-                  href="/auth/register"
-                  className=" block text-center text-sm rounded-md  text-blue-400 py-1.5 bg-transparent outline-2 outline font-medium outline-blue-300"
-                >
-                  register
+                <Link href="/auth/register" className="text-text text-sm py-2">
+                  you dont have an account ?
+                  <span className="text-primary font-medium"> register</span>
                 </Link>
               </>
             </Form>
