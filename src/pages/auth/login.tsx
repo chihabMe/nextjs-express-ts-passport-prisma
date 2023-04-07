@@ -42,10 +42,21 @@ const LoginPage = () => {
           }}
         >
           {(props) => (
-            <Form className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-4 ">
+            <Form className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-3 ">
               <>
-                <Input name="email" placeholder="enter your email" />
-                <Input name="password" placeholder="enter your password" />
+                <Input
+                  variant="md"
+                  label="email"
+                  name="email"
+                  placeholder="Enter  email"
+                />
+                <Input
+                  label="password"
+                  name="password"
+                  variant="md"
+                  type="password"
+                  placeholder="Enter  password"
+                />
                 {!success && done && (
                   <span className="text-red-400 font-medium text-sm">
                     - {message}
@@ -53,10 +64,18 @@ const LoginPage = () => {
                 )}
                 <Button
                   loading={loading}
+                  className="capitalize my-1"
                   disabled={props.isSubmitting || !props.isValid}
                 >
-                  Login
+                  log in
                 </Button>
+                <div className="w-full flex justify-center  ">
+                  <Link href="/auth/password-reset">
+                    <span className="capitalize text-primary text-sm  trsnaition-all duration-100 hover:opacity-70   cursor-pointer py-1 ">
+                      forgot your password?
+                    </span>
+                  </Link>
+                </div>
                 <Link
                   href="/auth/register"
                   className=" block text-center text-sm rounded-md  text-blue-400 py-1.5 bg-transparent outline-2 outline font-medium outline-blue-300"
