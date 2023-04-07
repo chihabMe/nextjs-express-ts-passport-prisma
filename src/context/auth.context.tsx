@@ -42,7 +42,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
   };
   useEffect(() => {
-    console.log("effect", data);
     if (!loading && status == 200) setIsAuthenticated(true);
     if (!loading && status == 200) setUser(data);
   }, [status, loading, data]);

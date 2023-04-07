@@ -20,7 +20,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               <Component {...pageProps} />;
             </ToasterWrapper>
           </Container>
-          <Header />
         </Provider>
       </AuthContextProvider>
     </>

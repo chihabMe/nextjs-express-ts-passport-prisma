@@ -1,22 +1,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import IUser from "../../server/interfaces/IUser";
+import useUser from "@/hooks/use-user";
 const HomePage = () => {
+  const user = useUser();
   const router = useRouter();
-  const [user, setUser] = useState<IUser | null>(null);
-  const [status, setStatus] = useState<number>(0);
-  useEffect(() => {
-    const fetchUser = async () => {
-      const response = await fetch("/api/accounts/me/");
-      const data = await response.json();
-      setStatus(response.status);
-      if (response.status == 200) setUser(data);
-    };
-    fetchUser();
-  }, []);
-  useEffect(() => {
-    if (status != 0 && status != 200) router.push("/auth/login/");
-  }, [status]);
   return (
     <div className="">
       {user && (

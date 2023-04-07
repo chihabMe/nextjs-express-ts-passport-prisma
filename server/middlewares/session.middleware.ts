@@ -1,8 +1,7 @@
 import session from "express-session";
-import MySQLSessionStore from "express-mysql-session";
-
-//@ts-ignore
-const MySQLStore = MySQLSessionStore(session);
+import { PrismaSessionStore } from "@quixo3/prisma-session-store";
+import { prisma } from "../core/db";
+import { PrismaClient } from "@prisma/client";
 
 const options = {
   host: process.env.DB_HOST ?? "",
@@ -11,7 +10,14 @@ const options = {
   user: process.env.DB_USER ?? "",
   database: process.env.DB_NAME ?? "",
 };
-const sessionStore = new MySQLStore(options);
+//const sessionStores = new MySQLStore(options);
+
+const sessionStore = new PrismaSessionStore(prisma, {
+  checkPeriod: 2 * 60 * 1000, //ms
+  dbRecordIdIsSessionId: true,
+  dbRecordIdFunction: undefined,
+});
+
 const sessionMiddleware = session({
   secret: process.env.SECRET_KEY ?? "default",
   cookie: {
