@@ -28,55 +28,55 @@ model Token {
   active Boolean @default(true)
 }
 
-model Profile {
-  id          String   @id @default(uuid())
-  phoneNumber String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @updatedAt
-  image       Image?   @relation(fields: [imageId], references: [id], name: "profileImage")
-  imageId     String   @unique
-}
+// model Profile {
+//   id          String   @id @default(uuid())
+//   phoneNumber String
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @default(now()) @updatedAt
+//   image       Image?   @relation(fields: [imageId], references: [id], name: "profileImage")
+//   imageId     String   @unique
+// }
 
-model Image {
-  id        String   @id @default(uuid())
-  url       String
-  createdAt DateTime @default(now())
-  profile   Profile? @relation("profileImage")
+// model Image {
+//   id        String   @id @default(uuid())
+//   url       String
+//   createdAt DateTime @default(now())
+//   profile   Profile? @relation("profileImage")
 
-  Property   Property? @relation("propertyImages", fields: [propertyId], references: [id])
-  propertyId String?
+//   Property   Property? @relation("propertyImages", fields: [propertyId], references: [id])
+//   propertyId String?
 
-  featredBy Property? @relation("featredBy")
-}
+//   featredBy Property? @relation("featredBy")
+// }
 
-model Property {
-  id     String  @id @default(uuid())
-  images Image[] @relation("propertyImages")
+// model Property {
+//   id     String  @id @default(uuid())
+//   images Image[] @relation("propertyImages")
 
-  featredImage   Image  @relation(fields: [featredImageId], references: [id], name: "featredBy")
-  featredImageId String @unique
+//   featredImage   Image  @relation(fields: [featredImageId], references: [id], name: "featredBy")
+//   featredImageId String @unique
 
-  propertyType   PropertyType @relation(fields: [propertyTypeId], references: [id])
-  propertyTypeId String
+//   propertyType   PropertyType @relation(fields: [propertyTypeId], references: [id])
+//   propertyTypeId String
 
-  numberOfRooms     Int
-  numberOfBathRooms Int
-  hasAPool          Boolean @default(false)
-  hasAnAC           Boolean @default(true)
-  builtYear         Int
-  area              Int
-  price             Int
+//   numberOfRooms     Int
+//   numberOfBathRooms Int
+//   hasAPool          Boolean @default(false)
+//   hasAnAC           Boolean @default(true)
+//   builtYear         Int
+//   area              Int
+//   price             Int
 
-  title        String
-  descripton   String
-  introduction String
-  location     String
-}
+//   title        String
+//   descripton   String
+//   introduction String
+//   location     String
+// }
 
-model PropertyType {
-  id        String     @id @default(uuid())
-  name      String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @default(now()) @updatedAt
-  Property  Property[]
-}
+// model PropertyType {
+//   id        String     @id @default(uuid())
+//   name      String
+//   createdAt DateTime   @default(now())
+//   updatedAt DateTime   @default(now()) @updatedAt
+//   Property  Property[]
+// }

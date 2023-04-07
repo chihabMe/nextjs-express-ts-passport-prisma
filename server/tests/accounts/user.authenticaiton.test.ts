@@ -27,8 +27,8 @@ beforeAll(async () => {
 afterAll(async () => {
   const deleteUsers = prisma.user.deleteMany();
   const deleteTokens = prisma.token.deleteMany();
-  const deleteProfiles = prisma.profile.deleteMany();
-  await prisma.$transaction([deleteUsers, deleteTokens, deleteProfiles]);
+  // const deleteProfiles = prisma.profile.deleteMany();
+  await prisma.$transaction([deleteUsers, deleteTokens]);
 });
 
 describe("user authentication", () => {
