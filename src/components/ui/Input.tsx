@@ -34,7 +34,7 @@ export interface inputProps
   extends ComponentPropsWithRef<"input">,
     VariantProps<typeof inputVariants> {
   name: string;
-  label: string;
+  label?: string;
 }
 export interface InputWithVariantsProps
   extends ComponentPropsWithRef<"input">,
