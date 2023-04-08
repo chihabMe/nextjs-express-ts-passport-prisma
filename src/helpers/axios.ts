@@ -4,9 +4,13 @@ import axios from "axios";
 export const axiosServerInstance = axios.create({
   baseURL: process.env.HOST,
   timeout: 1500,
+
   withCredentials: true,
+
   headers: {
     "content-type": "application/json",
+    "Access-Control-Allow-Credentials": true,
+    "Access-Control-Allow-Origin": process.env.HOST,
   },
 });
 
@@ -17,5 +21,7 @@ export const axiosClientInstance = axios.create({
   withCredentials: true,
   headers: {
     "content-type": "applicatoin/json",
+    "Access-Control-Allow-Credentials": true,
+    "Access-Control-Allow-Origin": process.env.HOST,
   },
 });
