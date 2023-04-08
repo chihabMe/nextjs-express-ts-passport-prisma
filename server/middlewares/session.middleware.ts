@@ -20,6 +20,7 @@ const sessionStore = new PrismaSessionStore(prisma, {
 const isProduction = process.env.NODE_ENV == "production";
 const sessionMiddleware = session({
   secret: process.env.SECRET_KEY ?? "default",
+  proxy: true,
   cookie: {
     maxAge: 60 * 60 * 24 * 15 * 1000,
     secure: isProduction,
