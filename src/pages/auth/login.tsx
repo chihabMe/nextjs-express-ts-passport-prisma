@@ -43,23 +43,21 @@ const LoginPage = () => {
           }}
         >
           {(props) => (
-            <Form className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-2 ">
+            <Form className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-3 ">
               <>
                 <Input
                   icon={<MailIcon className="w-4 h-4 text-text " />}
                   variant="md"
-                  label="email"
                   name="email"
-                  placeholder="Enter  email"
+                  placeholder="Email"
                 />
                 <Input
                   icon={<EyeOffIcon className="w-4 h-4 text-text " />}
                   icon2={<EyeIcon className="w-4 h-4 text-text " />}
-                  label="password"
                   name="password"
                   variant="md"
                   type="password"
-                  placeholder="Enter  password"
+                  placeholder="Password"
                   passwordInput
                 />
                 {!success && done && (
@@ -67,6 +65,11 @@ const LoginPage = () => {
                     - {message}
                   </span>
                 )}
+                <div className="w-full flex justify-end  text-xs font-medium cursor-pointer  py-2 text-text hover:text-primary transition-all duration-100">
+                  <Link href="/auth/password-reset">
+                    <span className=""> password reset </span>
+                  </Link>
+                </div>
                 <Button
                   loading={loading}
                   size="md"
@@ -75,11 +78,6 @@ const LoginPage = () => {
                 >
                   log in
                 </Button>
-                <div className="w-full flex justify-center  ">
-                  <Link href="/auth/password-reset">
-                    <span className="">forgot your password?</span>
-                  </Link>
-                </div>
                 <Link href="/auth/register" className="text-text text-sm py-2">
                   you dont have an account ?
                   <span className="text-primary font-medium"> register</span>

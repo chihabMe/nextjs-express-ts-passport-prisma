@@ -73,9 +73,9 @@ const Input = ({
       <div
         className={cn(
           className,
-          `flex ring-2 ring-gray-300  items-center gap-1   rounded-md   ring-2 h-11 px-2    `,
-          inValid ? "ring-red-300" : "",
-          valid ? "ring-green-300" : ""
+          `flex    items-center gap-1   rounded-md    h-11 px-2    `,
+          inValid ? "ring-red-300 ring-2 text-red-400" : "",
+          valid ? "ring-green-300 ring-2 text-green-600" : ""
         )}
       >
         <input
@@ -94,7 +94,7 @@ const Input = ({
 
       {inValid && (
         <span className="text-sm text-red-400 font-medium font-bold ">
-          {meta.error}
+          {meta.error?.toLowerCase()}
         </span>
       )}
     </div>
