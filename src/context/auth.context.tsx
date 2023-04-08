@@ -14,6 +14,7 @@ interface AuthContextState {
   loading: boolean;
   user: IUser | null;
   logout: () => void;
+  done: boolean;
 }
 
 const initialState: AuthContextState = {
@@ -21,11 +22,12 @@ const initialState: AuthContextState = {
   loading: true,
   user: null,
   logout: () => null,
+  done: false,
 };
 export const authContext = createContext(initialState);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const { loading, get, status, data } = useFetch<IUser>();
+  const { loading, done, get, status, data } = useFetch<IUser>();
   const [user, setUser] = useState(initialState.user);
 
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -50,6 +52,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     loading,
     user,
     logout,
+    done,
   };
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 };

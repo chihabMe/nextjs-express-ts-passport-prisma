@@ -59,16 +59,16 @@ const RegistrationPage = () => {
                   </span>
                 )}
                 <Button
+                  size="md"
                   loading={loading}
+                  className="capitalize my-2"
                   disabled={props.isSubmitting || !props.isValid}
                 >
                   register
                 </Button>
-                <Link
-                  href="/auth/login"
-                  className=" block text-center rounded-md capitalize text-blue-400 py-1.5 bg-transparent outline-2 outline font-medium outline-blue-300"
-                >
-                  login
+                <Link href="/auth/register" className="text-text text-sm py-2">
+                  you have an account ?
+                  <span className="text-primary font-medium"> login</span>
                 </Link>
               </>
             </Form>
