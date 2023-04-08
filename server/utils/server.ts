@@ -59,7 +59,7 @@ const setUpApp = async (app: Express) => {
   const nextApp = next({ dev });
   const handle = nextApp.getRequestHandler();
   await nextApp.prepare().then(() => {
-    app.set("trust proxy", true);
+    app.set("trust proxy", 1);
     registerMiddlewares(app);
     registerRoutes(app);
     app.get("*", (req, res) => {
