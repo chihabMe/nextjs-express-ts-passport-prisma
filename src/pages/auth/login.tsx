@@ -11,19 +11,25 @@ import { useEffect } from "react";
 import { toastError, toastSuccess } from "@/helpers/toasters";
 import toast from "react-hot-toast";
 import { MailIcon, EyeOffIcon, EyeIcon } from "lucide-react";
+import useAuth from "@/hooks/use-auth";
 const initialState = {
   email: "",
   password: "",
 };
 const LoginPage = () => {
   const router = useRouter();
+  const { login } = useAuth();
   const { data, message, done, post, errors, status, loading, success } =
     useFetch<null>();
   useEffect(() => {
     toast.remove();
     if (!loading && !success && done)
       toastError("please check your credentials");
-    if (!loading && success && done) toastSuccess("logged in successfully");
+    if (!loading && success && done) {
+      toastSuccess("logged in successfully");
+      login();
+      router.push("/");
+    }
   }, [loading, success]);
   return (
     <main>

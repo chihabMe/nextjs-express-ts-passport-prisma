@@ -1,6 +1,8 @@
+import useAuth from "@/hooks/use-auth";
 import Link from "next/link";
 import Button from "../ui/Button";
 const Header = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <header className="py-1 flex justify-between px-2 py-2">
       <div className="flex items-center gap-6 ">
@@ -43,18 +45,27 @@ const Header = () => {
             </Button>
           </Link>
         </div>
-        <div className="flex gap-4 items-center">
-          <Link href="/auth/login">
-            <Button className="!rounded-full px-6 py-2 !text-primary capitalize  !bg-transparent  text-primary outline-primary hover:outline active:outline-2 outline-1">
-              log in
+        {!isAuthenticated && (
+          <div className="flex gap-4 items-center">
+            <Link href="/auth/login">
+              <Button className="!rounded-full px-6 py-2 !text-primary capitalize  !bg-transparent  text-primary outline-primary hover:outline active:outline-2 outline-1">
+                log in
+              </Button>
+            </Link>
+            <Link href="/auth/register">
+              <Button className="px-4 capitalize !rounded-full py-2.5 hover:opacity-90  transition-all duration-100 active:outline-2 outline-primary active:outline ">
+                sign up
+              </Button>
+            </Link>
+          </div>
+        )}
+        {isAuthenticated && (
+          <div>
+            <Button>
+              <Link href="/accounts/profile">profile</Link>
             </Button>
-          </Link>
-          <Link href="/auth/register">
-            <Button className="px-4 capitalize !rounded-full py-2.5 hover:opacity-90  transition-all duration-100 active:outline-2 outline-primary active:outline ">
-              sign up
-            </Button>
-          </Link>
-        </div>
+          </div>
+        )}
       </div>
     </header>
   );

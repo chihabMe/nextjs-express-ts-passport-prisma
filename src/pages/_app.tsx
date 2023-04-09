@@ -8,7 +8,6 @@ import Header from "@/components/layout/Header";
 import Container from "@/components/wrappers/Container";
 import ToasterWrapper from "@/components/wrappers/ToasterWrapper";
 import Head from "next/head";
-
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>

@@ -27,7 +27,6 @@ const sessionMiddleware = session({
     httpOnly: true,
     path: "/",
     signed: true,
-    domain: process.env.DOMAIN ?? "",
     sameSite: isProduction ? "none" : "lax",
   },
   name: "session_id",

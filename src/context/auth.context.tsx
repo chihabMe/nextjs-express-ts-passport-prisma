@@ -15,6 +15,7 @@ interface AuthContextState {
   user: IUser | null;
   logout: () => void;
   done: boolean;
+  login: () => void;
 }
 
 const initialState: AuthContextState = {
@@ -22,6 +23,7 @@ const initialState: AuthContextState = {
   loading: true,
   user: null,
   logout: () => null,
+  login: () => null,
   done: false,
 };
 export const authContext = createContext(initialState);
@@ -35,6 +37,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   );
   const verify = () => {
     get({ url: profileEndpoint });
+  };
+  const login = () => {
+    verify();
   };
   useEffect(() => {
     verify();
@@ -53,6 +58,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     user,
     logout,
     done,
+    login,
   };
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 };

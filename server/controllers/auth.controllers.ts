@@ -51,8 +51,6 @@ export const loginController = async (
       if (err) {
         next(err);
       }
-      console.log("logged in successfully");
-      console.log(jsonResponse);
       return res.status(jsonResponse.statusCode).json(jsonResponse);
     });
   } catch (err) {
