@@ -18,11 +18,12 @@ const SocialLoginItem: React.FC<Props> = ({
 }) => {
   return (
     <Button
-      className=" flex  h-12     items-center   hover:ring-primary hover:ring-1 active:ring-2 py-2    "
+      className="  flex  h-12     items-center   hover:ring-primary hover:ring-1 active:ring-2 py-2    "
       variant="ghost"
     >
-      <div className="w-full  mx-auto flex gap-10 ">
+      <div className="w-full max-w-[300px]  flex mx-auto  justify-center  relative     ">
         <Image
+          className="  !absolute left-0 "
           src={icon}
           alt={alt}
           width={iconWidth ?? 20}

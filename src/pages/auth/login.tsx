@@ -36,7 +36,7 @@ const LoginPage = () => {
   }, [loading, success]);
   return (
     <main>
-      <section className="w-full mx-auto max-w-[380px] flex flex-col justify-center items-center min-h-screen  ">
+      <section className="w-full mx-auto max-w-[380px] flex flex-col justify-center items-center min-h-screen px-4 md:px-0  ">
         <Formik
           initialValues={initialState}
           validationSchema={toFormikValidationSchema(loginSchema)}

@@ -8,8 +8,8 @@ import HeaderDarkLightThemeToggler from "./HeaderDarkLightThemeToggler";
 const Header = () => {
   const { isAuthenticated } = useAuth();
   return (
-    <header className="py-1 flex justify-between px-2 py-2">
-      <div className="flex items-center gap-6 ">
+    <header className="py-1 flex  justify-between px-2 py-2">
+      <div className="hidden md:flex items-center gap-6 ">
         <Link href="/">
           <h1 className="font-medium text-2xl capitalize">
             <span className="text-primary">real</span>
@@ -37,7 +37,7 @@ const Header = () => {
         </nav>
       </div>
       <div className="flex gap-4 items-center justify-between w-full  max-w-[550px]  ">
-        <div className="flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4 ">
           <Link href="/">
             <Button
               size="xs"
@@ -57,7 +57,7 @@ const Header = () => {
             </Button>
           </Link>
         </div>
-        <div className="flex  gap-2">
+        <div className="flex  gap-2  w-full md:w-auto  justify-end flex-end  ">
           <HeaderDarkLightThemeToggler />
           {!isAuthenticated ? <HeaderNonAuthDisplay /> : <HeaderAuthDisplay />}
         </div>
