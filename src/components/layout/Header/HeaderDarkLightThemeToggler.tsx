@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
+import { toastSuccess } from "@/helpers/toasters";
 import { MoonIcon, SunIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const themes = {
   light: "light",
   dark: "dark",
@@ -8,7 +9,11 @@ const themes = {
 const HeaderDarkLightThemeToggler = () => {
   const [theme, setTheme] = useState(themes.light);
   const toggleTheme = () => {
-    setTheme((prev) => (prev == themes.light ? themes.dark : themes.light));
+    setTheme((prev) => {
+      const newTheme = prev == themes.light ? themes.dark : themes.light;
+      toastSuccess(`${newTheme} theme on`);
+      return newTheme;
+    });
   };
   return (
     <>

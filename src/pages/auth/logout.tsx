@@ -1,4 +1,5 @@
 import { logoutEndpoint } from "@/config/endpoints";
+import { toastSuccess } from "@/helpers/toasters";
 import useAuth from "@/hooks/use-auth";
 import useFetch from "@/hooks/use-fetch";
 import { useRouter } from "next/router";
@@ -16,6 +17,7 @@ const LogoutPage = () => {
   useEffect(() => {
     if (!loading && success) {
       logout();
+      toastSuccess("logged out");
     }
   }, [loading]);
 
