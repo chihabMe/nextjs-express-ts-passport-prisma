@@ -20,7 +20,9 @@ const ProfilePage = () => {
       <main>
         <div className=" w-full  items-center max-w-sm mx-auto cursor-pointer flex flex-col gap-2">
           <UserCircleIcon className="w-16 h-16 text-gray-800 " />
-          <h2 className="font-medium">{user?.username}</h2>
+          <h2 className="font-medium">username:{user?.username}</h2>
+          <h2 className="font-medium">email:{user?.email}</h2>
+          <h2 className="font-medium">id:{user?.id}</h2>
           <Link href="/">
             <Button>home</Button>
           </Link>

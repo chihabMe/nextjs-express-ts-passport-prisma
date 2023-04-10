@@ -1,6 +1,10 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { loginEndponit } from "@/config/endpoints";
+import {
+  facebookAuthUrl,
+  googleAuthUrl,
+  loginEndponit,
+} from "@/config/endpoints";
 import useFetch from "@/hooks/use-fetch";
 import { loginSchema } from "../../../server/schemas/auth.schema";
 import { Form, Formik } from "formik";
@@ -100,11 +104,13 @@ const LoginPage = () => {
             text="login with Google"
             icon={googleImage}
             alt="google"
+            authUrl={googleAuthUrl}
           />
           <SocialLoginItem
             text="login with Facebook"
             icon={facebookImage}
             alt="google"
+            authUrl={facebookAuthUrl}
           />
         </div>
       </section>

@@ -7,6 +7,7 @@ interface Props {
   iconWidth?: number;
   iconHeight?: number;
   alt: string;
+  authUrl: string;
 }
 
 const SocialLoginItem: React.FC<Props> = ({
@@ -15,13 +16,17 @@ const SocialLoginItem: React.FC<Props> = ({
   iconHeight,
   iconWidth,
   alt,
+  authUrl,
 }) => {
   return (
     <Button
       className="  flex  h-12     items-center   hover:ring-primary hover:ring-1 active:ring-2 py-2    "
       variant="ghost"
     >
-      <div className="w-full max-w-[300px]  flex mx-auto  justify-center  relative     ">
+      <a
+        href={authUrl}
+        className="w-full max-w-[300px]  flex mx-auto  justify-center  relative     "
+      >
         <Image
           className="  !absolute left-0 "
           src={icon}
@@ -30,7 +35,7 @@ const SocialLoginItem: React.FC<Props> = ({
           height={iconHeight ?? 20}
         />
         <span className="text-sm font-medium">{text}</span>
-      </div>
+      </a>
     </Button>
   );
 };

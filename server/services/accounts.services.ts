@@ -80,3 +80,13 @@ export const updateUserService = async (params: {
 }) => {
   return prisma.user.update(params);
 };
+
+export const findUserOrCreateService = async (data: Prisma.UserCreateInput) => {
+  const user = await prisma.user.findFirst({
+    where: {
+      id: data.id,
+    },
+  });
+  if (!user) return prisma.user.create({ data });
+  return user;
+};

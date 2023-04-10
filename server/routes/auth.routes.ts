@@ -16,12 +16,25 @@ authRouter.post(
   zodValidatorMiddleware(loginSchema),
   loginController
 );
-authRouter.post(
-  "/passport-login/",
-  passport.authenticate("local"),
-  (req, res) => {
-    res.status(200).json("you are logged in ");
-  }
+// authRouter.post(
+//   "/passport-login/",
+//   passport.authenticate("local"),
+//   (req, res) => {
+//     res.status(200).json("you are logged in ");
+//   }
+// );
+//
+authRouter.get(
+  "/with/google/",
+  passport.authenticate("google", {
+    scope: ["email", "profile"],
+  })
+);
+authRouter.get(
+  "/callback/google",
+  passport.authenticate("google", {
+    successRedirect: "/",
+  })
 );
 
 authRouter.post("/logout/", logoutController);
