@@ -12,6 +12,9 @@ import { toastError, toastSuccess } from "@/helpers/toasters";
 import toast from "react-hot-toast";
 import { MailIcon, EyeOffIcon, EyeIcon } from "lucide-react";
 import useAuth from "@/hooks/use-auth";
+import googleImage from "@/assets/images/social/google.png";
+import facebookImage from "@/assets/images/social/facebook.png";
+import SocialLoginItem from "@/components/ui/SocialLoginItem";
 const initialState = {
   email: "",
   password: "",
@@ -33,7 +36,7 @@ const LoginPage = () => {
   }, [loading, success]);
   return (
     <main>
-      <section className="w-full flex justify-center items-center min-h-screen bg-gray-200">
+      <section className="w-full mx-auto max-w-[380px] flex flex-col justify-center items-center min-h-screen  ">
         <Formik
           initialValues={initialState}
           validationSchema={toFormikValidationSchema(loginSchema)}
@@ -49,7 +52,7 @@ const LoginPage = () => {
           }}
         >
           {(props) => (
-            <Form className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-3 ">
+            <Form className="w-full  flex flex-col rounded-lg  bg-white gap-3 ">
               <>
                 <Input
                   icon={<MailIcon className="w-4 h-4 text-text " />}
@@ -92,6 +95,18 @@ const LoginPage = () => {
             </Form>
           )}
         </Formik>
+        <div className="flex flex-col mt-4    w-full gap-2">
+          <SocialLoginItem
+            text="login with Google"
+            icon={googleImage}
+            alt="google"
+          />
+          <SocialLoginItem
+            text="login with Facebook"
+            icon={facebookImage}
+            alt="google"
+          />
+        </div>
       </section>
     </main>
   );
