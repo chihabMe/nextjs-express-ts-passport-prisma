@@ -27,12 +27,13 @@ const localStrategyHandler = new LocalStrategy((username, password, cb) => {
     }
   });
 });
-
+const callbackURL = `${process.env.HOST}/api/auth/callback/google`;
+console.log(callbackURL);
 const googleStrategyHandler = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID ?? "",
     clientSecret: process.env.GOOGLE_SECRET ?? "",
-    callbackURL: `${process.env.HOST}/api/auth/callback/google`,
+    callbackURL,
   },
   async (acessToken, refreshToken, profile, cb) => {
     if (!profile || profile == undefined)
