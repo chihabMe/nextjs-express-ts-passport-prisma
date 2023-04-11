@@ -11,6 +11,7 @@
     "db:deploy:test": "dotenv -e .env.test -- pnpm db:deploy",
     "test": "pnpm db:deploy:test && pnpm server:test",
     "dev": "pnpm dotenv -e .env.development -- pnpm nodemon --delay 1.5 --watch server ./server/app.ts ",
+    "dev:https": "pnpm dotenv -e .env.development -- pnpm nodemon --delay 1.5 --watch server ./server/app.ts https ",
     "start": "NODE_ENV=production node ./dist/app.js",
     "start:test": "NODE_ENV=production pnpm dotenv -e .env.production -- node ./dist/app.js",
     "web:build": "pnpm next build",

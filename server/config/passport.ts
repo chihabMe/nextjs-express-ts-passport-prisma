@@ -37,8 +37,6 @@ const googleStrategyHandler = new GoogleStrategy(
     callbackURL: `${process.env.HOST}/api/auth/callback/google/`,
   },
   async (acessToken, refreshToken, profile, cb) => {
-    if (!profile || profile == undefined)
-      return cb("google didn't provide a profile");
     try {
       let email;
       if (profile.emails && profile.emails[0]) email = profile.emails[0].value;
@@ -60,17 +58,33 @@ const googleStrategyHandler = new GoogleStrategy(
   }
 );
 
-const facebookOpts = {
-  callbackURL: `${process.env.HOST}/api/auth/callback/facebook/`,
-  clientID: process.env.FACEBOOK_CLIENT_ID ?? "",
-  clientSecret: process.env.FACEBOOK_SECRET ?? "",
-};
-console.log(facebookOpts);
 const facebookStragetyHandler = new FacebookStrategy(
-  facebookOpts,
-  (accessToken, refreshToken, profile, cb) => {
-    console.log(profile);
-    return cb("error");
+  {
+    callbackURL: `${process.env.HOST}/api/auth/callback/facebook/`,
+    clientID: process.env.FACEBOOK_CLIENT_ID ?? "",
+    clientSecret: process.env.FACEBOOK_SECRET ?? "",
+    profileFields: ["id", "displayName", "email"],
+  },
+  async (accessToken, refreshToken, profile, cb) => {
+    let email;
+    if (profile.emails && profile.emails?.length > 0)
+      email = profile.emails[0].value;
+    const username = profile.displayName;
+    const id = profile.id;
+    try {
+      if (!username || !id || !email)
+        return cb("facebook didn't provide a valid profile");
+      const user = await findUserOrCreateService({
+        email,
+        password: "",
+        id,
+        username,
+      });
+      return cb(null, user);
+    } catch (err) {
+      console.error(err);
+      return cb("can't register this account right now ");
+    }
   }
 );
 

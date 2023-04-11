@@ -41,7 +41,12 @@ authRouter.get(
   })
 );
 
-authRouter.get("/with/facebook/", passport.authenticate("facebook", {}));
+authRouter.get(
+  "/with/facebook/",
+  passport.authenticate("facebook", {
+    scope: ["email"],
+  })
+);
 authRouter.get(
   "/callback/facebook/",
   passport.authenticate("facebook", {

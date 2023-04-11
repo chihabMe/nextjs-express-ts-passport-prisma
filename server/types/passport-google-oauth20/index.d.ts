@@ -6,7 +6,6 @@ declare module "passport-google-oauth20" {
     photos: { value: string }[];
     provider: string;
     name: { familyName: string; givenName: string };
-    pop: string;
   }
 }
 
