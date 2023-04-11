@@ -34,7 +34,7 @@ const googleStrategyHandler = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID ?? "",
     clientSecret: process.env.GOOGLE_SECRET ?? "",
-    callbackURL: "http://localhost:3000/api/auth/callback/google/",
+    callbackURL: `${process.env.HOST}/api/auth/callback/google/`,
   },
   async (acessToken, refreshToken, profile, cb) => {
     if (!profile || profile == undefined)
@@ -60,12 +60,14 @@ const googleStrategyHandler = new GoogleStrategy(
   }
 );
 
+const facebookOpts = {
+  callbackURL: `${process.env.HOST}/api/auth/callback/facebook/`,
+  clientID: process.env.FACEBOOK_CLIENT_ID ?? "",
+  clientSecret: process.env.FACEBOOK_SECRET ?? "",
+};
+console.log(facebookOpts);
 const facebookStragetyHandler = new FacebookStrategy(
-  {
-    callbackURL: "http://localhost:3000/api/auth/callback/facebook/",
-    clientID: process.env.FACEBOOK_CLIENT_ID ?? "",
-    clientSecret: process.env.FACEBOOK_SECRET ?? "",
-  },
+  facebookOpts,
   (accessToken, refreshToken, profile, cb) => {
     console.log(profile);
     return cb("error");
