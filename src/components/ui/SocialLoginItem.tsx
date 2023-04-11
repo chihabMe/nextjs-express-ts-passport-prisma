@@ -19,14 +19,14 @@ const SocialLoginItem: React.FC<Props> = ({
   authUrl,
 }) => {
   return (
-    <Button
-      className="  flex  h-12     items-center   hover:ring-primary hover:ring-1 active:ring-2 py-2    "
-      variant="ghost"
+    <a
+      href={authUrl}
+      target="_blank"
+      className="flex rounded-md  h-12     items-center   hover:ring-primary hover:ring-1 active:ring-2 py-2    "
     >
-      <a
-        href={authUrl}
-        target="_blank"
-        className="w-full max-w-[300px]  flex mx-auto  justify-center  relative     "
+      <Button
+        className="w-full max-w-[300px] active:ring-0 focus:ring-0  flex mx-auto  justify-center  relative     "
+        variant="ghost"
       >
         <Image
           className="  !absolute left-0 "
@@ -36,8 +36,8 @@ const SocialLoginItem: React.FC<Props> = ({
           height={iconHeight ?? 20}
         />
         <span className="text-sm font-medium">{text}</span>
-      </a>
-    </Button>
+      </Button>
+    </a>
   );
 };
 
