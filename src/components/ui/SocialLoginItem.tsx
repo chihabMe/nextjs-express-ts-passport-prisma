@@ -25,6 +25,7 @@ const SocialLoginItem: React.FC<Props> = ({
     >
       <a
         href={authUrl}
+        target="_blank"
         className="w-full max-w-[300px]  flex mx-auto  justify-center  relative     "
       >
         <Image

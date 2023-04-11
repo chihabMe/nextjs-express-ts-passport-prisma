@@ -7,9 +7,11 @@ import {
 } from "../services/accounts.services";
 import { comparePassword } from "../lib/auth.libs";
 import GoogleStrategyClass from "passport-google-oauth20";
+import FacebookStrategyClass from "passport-facebook";
 
 const LocalStrategy = LocalStrategyClass.Strategy;
 const GoogleStrategy = GoogleStrategyClass.Strategy;
+const FacebookStrategy = FacebookStrategyClass.Strategy;
 
 const localStrategyHandler = new LocalStrategy((username, password, cb) => {
   process.nextTick(async () => {
@@ -27,15 +29,13 @@ const localStrategyHandler = new LocalStrategy((username, password, cb) => {
     }
   });
 });
-const googleOpts = {
-  clientID: process.env.GOOGLE_CLIENT_ID ?? "",
-  clientSecret: process.env.GOOGLE_SECRET ?? "",
-  callbackURL: `${process.env.HOST}/api/auth/callback/google`,
-};
-console.log(googleOpts);
-const googleStrategyHandler = new GoogleStrategy(
-  googleOpts,
 
+const googleStrategyHandler = new GoogleStrategy(
+  {
+    clientID: process.env.GOOGLE_CLIENT_ID ?? "",
+    clientSecret: process.env.GOOGLE_SECRET ?? "",
+    callbackURL: "http://localhost:3000/api/auth/callback/google/",
+  },
   async (acessToken, refreshToken, profile, cb) => {
     if (!profile || profile == undefined)
       return cb("google didn't provide a profile");
@@ -60,8 +60,25 @@ const googleStrategyHandler = new GoogleStrategy(
   }
 );
 
+const facebookStragetyHandler = new FacebookStrategy(
+  {
+    callbackURL: "http://localhost:3000/api/auth/callback/facebook/",
+    clientID: process.env.FACEBOOK_CLIENT_ID ?? "",
+    clientSecret: process.env.FACEBOOK_SECRET ?? "",
+  },
+  (accessToken, refreshToken, profile, cb) => {
+    console.log(profile);
+    return cb("error");
+  }
+);
+
+//registrig startegies
 passport.use(localStrategyHandler);
 passport.use(googleStrategyHandler);
+passport.use(facebookStragetyHandler);
+
+//serializtion
+
 passport.serializeUser((user, cb) => cb(null, user.id));
 passport.deserializeUser((userId: string, cb) => {
   process.nextTick(async () => {

@@ -2,6 +2,8 @@ import { Router } from "express";
 import AuthController, {
   loginController,
   logoutController,
+  socialLoginFialdController,
+  socialLoginSuccessController,
 } from "../controllers/auth.controllers";
 import passport from "passport";
 import zodValidatorMiddleware from "../middlewares/zod.body.validator.middleware";
@@ -24,6 +26,7 @@ authRouter.post(
 //   }
 // );
 //
+
 authRouter.get(
   "/with/google/",
   passport.authenticate("google", {
@@ -31,10 +34,27 @@ authRouter.get(
   })
 );
 authRouter.get(
-  "/callback/google",
+  "/callback/google/",
   passport.authenticate("google", {
     successRedirect: "/",
+    failureRedirect: "/api/auth/social-login-fialed/",
   })
 );
+
+authRouter.get(
+  "/with/facebook/",
+  passport.authenticate("facebook", {
+    scope: ["user_friends", "manage_pages"],
+  })
+);
+authRouter.get(
+  "/callback/facebook/",
+  passport.authenticate("facebook", {
+    successRedirect: "/",
+    failureRedirect: "/api/auth/social-login-fialed/",
+  })
+);
+
+authRouter.get("/social-login-fialed/", socialLoginFialdController);
 
 authRouter.post("/logout/", logoutController);

@@ -19,6 +19,8 @@ import useAuth from "@/hooks/use-auth";
 import googleImage from "@/assets/images/social/google.png";
 import facebookImage from "@/assets/images/social/facebook.png";
 import SocialLoginItem from "@/components/ui/SocialLoginItem";
+import axios from "axios";
+import { axiosClientInstance } from "@/helpers/axios";
 const initialState = {
   email: "",
   password: "",

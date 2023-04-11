@@ -72,3 +72,20 @@ export const logoutController = (
     return res.status(httpStatus.OK).json("logged out");
   });
 };
+
+export const socialLoginSuccessController = (req: Request, res: Response) => {
+  const jsonResponse: IJSonResponse<null> = {
+    message: "you are logged in ",
+    status: "success",
+    statusCode: httpStatus.OK,
+  };
+  return res.status(jsonResponse.statusCode).json(jsonResponse);
+};
+export const socialLoginFialdController = (req: Request, res: Response) => {
+  const jsonResponse: IJSonResponse<null> = {
+    message: "social login failed",
+    status: "error",
+    statusCode: httpStatus.BAD_REQUEST,
+  };
+  return res.status(jsonResponse.statusCode).json(jsonResponse);
+};
