@@ -11,8 +11,4 @@ import { prisma } from "../core/db";
 export const accountsRouter = Router();
 
 accountsRouter.get("/me/", isAuthMiddleware, meController);
-accountsRouter.post(
-  "/register/",
-  zodValidatorMiddleware(registerationSchema),
-  registerController
-);
+accountsRouter.post("/register/", registerController);

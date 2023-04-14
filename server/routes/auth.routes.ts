@@ -1,5 +1,5 @@
 import { Router } from "express";
-import AuthController, {
+import {
   loginController,
   logoutController,
   socialLoginFialdController,
@@ -11,13 +11,7 @@ import { loginSchema } from "../schemas/auth.schema";
 
 export const authRouter = Router();
 
-const authController = new AuthController();
-authRouter.all("", authController.all);
-authRouter.post(
-  "/login/",
-  zodValidatorMiddleware(loginSchema),
-  loginController
-);
+authRouter.post("/login/", loginController);
 // authRouter.post(
 //   "/passport-login/",
 //   passport.authenticate("local"),

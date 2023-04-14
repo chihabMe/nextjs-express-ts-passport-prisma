@@ -2,7 +2,7 @@ import { authRouter } from "../routes/auth.routes";
 import bodyParser from "body-parser";
 import errorsMiddleware from "../middlewares/errors.middleware";
 import sessionMiddleware from "../middlewares/session.middleware";
-import express, { Express, Request, Response, Router } from "express";
+import express, { Express, Router } from "express";
 import "../config/passport";
 import passport from "passport";
 import notFoundMiddleware from "../middlewares/notFound.middleware";
@@ -11,6 +11,7 @@ import next from "next";
 import { parse } from "url";
 import helmet from "helmet";
 import morgan from "morgan";
+import responseTime from "response-time";
 
 export const createServer = async () => {
   const app = express();
@@ -33,6 +34,11 @@ const registerRoutes = (app: Express) => {
 
   //register the api router
   app.use("/api/", apiRouter);
+};
+const registerDevMiddlewares = (app: Express) => {
+  if (process.env.ENV_MODE != "production") {
+    app.use(responseTime());
+  }
 };
 const registerMiddlewares = (app: Express) => {
   app.use(
@@ -60,7 +66,9 @@ const setUpApp = async (app: Express) => {
   const handle = nextApp.getRequestHandler();
   await nextApp.prepare().then(() => {
     app.set("trust proxy", 1);
+    app.disable("x-powered-by");
     registerMiddlewares(app);
+    registerDevMiddlewares(app);
     registerRoutes(app);
     app.get("*", (req, res) => {
       const url = parse(req.url, true);

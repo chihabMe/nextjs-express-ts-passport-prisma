@@ -17,8 +17,7 @@ export default (
       message: "Invalid fields",
       errors,
     });
-    res.status(response.statusCode).json(response);
+    return res.status(response.statusCode).json(response);
   }
-
   res.status(httpStatus.INTERNAL_SERVER_ERROR).json(httpStatus["500_MESSAGE"]);
 };

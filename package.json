@@ -59,6 +59,7 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-redux": "^8.0.5",
+    "response-time": "^2.3.2",
     "tailwind-merge": "^1.12.0",
     "zod": "^3.21.4",
     "zod-formik-adapter": "^1.2.0"
@@ -74,6 +75,7 @@
     "@types/passport-facebook": "^2.1.11",
     "@types/passport-google-oauth20": "^2.0.11",
     "@types/passport-local": "^1.0.35",
+    "@types/response-time": "^2.3.5",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",

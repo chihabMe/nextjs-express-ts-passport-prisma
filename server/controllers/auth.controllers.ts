@@ -1,31 +1,18 @@
 import { prisma } from "../core/db";
 import User from "../models/user.model";
-import BaseController from "../utils/base.controller";
 import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import IJSonResponse from "../interfaces/IJsonResponse";
-
-const user = {
-  name: "chihab",
-  email: "chihab@email.com",
-};
-
-export default class AuthController extends BaseController {
-  objects = user;
-
-  public async get(req: Request, res: Response) {
-    return res.status(200).json({ data: this.objects });
-  }
-}
+import { loginSchema } from "../schemas/auth.schema";
 
 export const loginController = async (
   req: Request<any, any, { email: string; password: string }>,
   res: Response,
   next: NextFunction
 ) => {
-  const { email, password } = req.body;
   let jsonResponse: IJSonResponse<null>;
   try {
+    const { email, password } = loginSchema.parse(req.body);
     const { user, isValid } = await User.checkPassword({
       email,
       password,

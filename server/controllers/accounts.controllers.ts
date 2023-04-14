@@ -19,7 +19,7 @@ export const registerController = async (
   try {
     let jsonRespone: IJSonResponse<IUser>;
 
-    const { email, username, password } = req.body;
+    const { email, username, password } = registerationSchema.parse(req.body);
     const { valid, errors } = await validateUser({ email, username });
 
     if (!valid) {
