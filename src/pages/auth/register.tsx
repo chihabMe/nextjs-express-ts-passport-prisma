@@ -1,6 +1,10 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { registrationEndpoint } from "@/config/endpoints";
+import {
+  facebookAuthUrl,
+  googleAuthUrl,
+  registrationEndpoint,
+} from "@/config/endpoints";
 import useFetch from "@/hooks/use-fetch";
 import { registerationSchema } from "../../../server/schemas/auth.schema";
 import { Form, Formik } from "formik";
@@ -10,6 +14,9 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { toastError, toastSuccess } from "@/helpers/toasters";
+import SocialLoginItem from "@/components/ui/SocialLoginItem";
+import googleImage from "@/assets/images/social/google.png";
+import facebookImage from "@/assets/images/social/facebook.png";
 const initialState = {
   username: "",
   email: "",
@@ -27,7 +34,7 @@ const RegistrationPage = () => {
   }, [loading, success]);
   return (
     <main>
-      <section className="w-full flex justify-center items-center min-h-screen bg-gray-200">
+      <section className="w-full mx-auto max-w-[380px] flex flex-col justify-center items-center min-h-screen px-4 md:px-0  ">
         <Formik
           initialValues={initialState}
           validationSchema={toFormikValidationSchema(registerationSchema)}
@@ -43,7 +50,7 @@ const RegistrationPage = () => {
           }}
         >
           {(props) => (
-            <Form className="w-full max-w-[380px] flex flex-col rounded-lg p-4 bg-white gap-4 ">
+            <Form className="w-full  flex flex-col rounded-lg  bg-bg-light dark:bg-bg-dark gap-3 ">
               <>
                 <Input type="text" name="username" placeholder="username" />
                 <Input type="email" name="email" placeholder="email" />
@@ -66,7 +73,7 @@ const RegistrationPage = () => {
                 >
                   register
                 </Button>
-                <Link href="/auth/register" className="text-text text-sm py-2">
+                <Link href="/auth/login" className="text-text text-sm py-2">
                   you have an account ?
                   <span className="text-primary font-medium"> login</span>
                 </Link>
@@ -74,6 +81,21 @@ const RegistrationPage = () => {
             </Form>
           )}
         </Formik>
+
+        <div className="flex flex-col mt-4    w-full gap-2">
+          <SocialLoginItem
+            text="login with Google"
+            icon={googleImage}
+            alt="google"
+            authUrl={googleAuthUrl}
+          />
+          <SocialLoginItem
+            text="login with Facebook"
+            icon={facebookImage}
+            alt="google"
+            authUrl={facebookAuthUrl}
+          />
+        </div>
       </section>
     </main>
   );
