@@ -18,19 +18,19 @@ const Header = () => {
         </Link>
         <nav className="">
           <ul className="flex gap-2  items-center  capitalize text-sm h-full">
-            <li className="px-3 transition-all  duraition-100 border-b-[3px] hover:border-primary h-10 flex items-center justify-center cursor-pointer">
+            <li className="px-3 transition-all  duraition-100 border-b-[3px] border-transparent hover:border-primary h-10 flex items-center justify-center cursor-pointer">
               buy
             </li>
-            <li className="px-3 transition-all  duraition-100 border-b-[3px] hover:border-primary h-10 flex items-center justify-center cursor-pointer">
+            <li className="px-3 transition-all  duraition-100 border-b-[3px] border-transparent hover:border-primary h-10 flex items-center justify-center cursor-pointer">
               rent
             </li>
-            <li className="px-3 transition-all  duraition-100 border-b-[3px] hover:border-primary h-10 flex items-center justify-center cursor-pointer">
+            <li className="px-3 transition-all  duraition-100 border-b-[3px] border-transparent hover:border-primary h-10 flex items-center justify-center cursor-pointer">
               sell
             </li>
-            <li className="px-3 transition-all  duraition-100 border-b-[3px] hover:border-primary h-10 flex items-center justify-center cursor-pointer">
+            <li className="px-3 transition-all  duraition-100 border-b-[3px] border-transparent hover:border-primary h-10 flex items-center justify-center cursor-pointer">
               my home
             </li>
-            <li className="px-3 transition-all  duraition-100 border-b-[3px] hover:border-primary h-10 flex items-center justify-center cursor-pointer">
+            <li className="px-3 transition-all  duraition-100 border-b-[3px] border-transparent hover:border-primary h-10 flex items-center justify-center cursor-pointer">
               news & blogs
             </li>
           </ul>

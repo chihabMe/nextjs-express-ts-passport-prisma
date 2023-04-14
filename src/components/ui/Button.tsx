@@ -8,7 +8,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-white",
-        ghost: "bg-transparent text-title",
+        ghost: "bg-transparent dark:!text-title-dark text-title",
       },
       size: {
         default: "h-10 px-3 py-2",

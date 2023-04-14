@@ -40,6 +40,7 @@ specifiers:
   lucide-react: ^0.131.0
   morgan: ^1.10.0
   next: 13.2.4
+  next-themes: ^0.2.1
   nextjs-progressbar: ^0.0.16
   nodemon: ^2.0.22
   passport: ^0.6.0
@@ -86,6 +87,7 @@ dependencies:
   lucide-react: 0.131.0_react@18.2.0
   morgan: 1.10.0
   next: 13.2.4_hrdbe576m4w26u2yfpqpvbxyky
+  next-themes: 0.2.1_ld2jel3hspngo3u5lti2kgl2sq
   nextjs-progressbar: 0.0.16_next@13.2.4+react@18.2.0
   passport: 0.6.0
   passport-facebook: 3.0.0
@@ -4245,6 +4247,18 @@ packages:
   /negotiator/0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /next-themes/0.2.1_ld2jel3hspngo3u5lti2kgl2sq:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.2.4_hrdbe576m4w26u2yfpqpvbxyky
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /next/13.2.4_hrdbe576m4w26u2yfpqpvbxyky:

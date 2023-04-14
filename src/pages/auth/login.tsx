@@ -58,7 +58,7 @@ const LoginPage = () => {
           }}
         >
           {(props) => (
-            <Form className="w-full  flex flex-col rounded-lg  bg-white gap-3 ">
+            <Form className="w-full  flex flex-col rounded-lg  bg-bg-light dark:bg-bg-dark gap-3 ">
               <>
                 <Input
                   icon={<MailIcon className="w-4 h-4 text-text " />}

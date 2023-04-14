@@ -73,14 +73,16 @@ const Input = ({
       <div
         className={cn(
           className,
-          `flex    items-center gap-1   rounded-md    h-11 px-2    `,
-          inValid ? "ring-red-300 ring-2 text-red-400" : "",
+          `flex    items-center gap-1   rounded-sm    h-11 px-2    `,
+          inValid ? "ring-red-300 ring-2 text-red-400 dark:text-red-300" : "",
           valid ? "ring-green-300 ring-2 text-green-600" : ""
         )}
       >
         <input
           type={showText ? "text" : type}
-          className={"w-full   h-10 px-2 outline-none  text-sm   font-medium "}
+          className={
+            "w-full  bg-transparent   h-10 px-2 outline-none  text-sm   font-medium "
+          }
           {...props}
           {...field}
         />
@@ -93,7 +95,7 @@ const Input = ({
       </div>
 
       {inValid && (
-        <span className="text-sm text-red-400 font-medium font-bold ">
+        <span className="text-sm text-red-400 dark:text-red-300 font-medium font-bold ">
           {meta.error?.toLowerCase()}
         </span>
       )}

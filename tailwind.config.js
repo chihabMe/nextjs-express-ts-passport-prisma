@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -15,6 +16,10 @@ module.exports = {
         title: "#333333",
         "text-dark": "#656565",
         "title-dark": "#dddddd",
+        "bg-light": "#fff",
+        "bg-dark": "#1F2937",
+        error: "",
+        "error-dark": "",
       },
     },
   },
