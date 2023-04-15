@@ -1,5 +1,6 @@
 import { prisma } from "../core/db";
 import { User, Prisma } from "@prisma/client";
+import crypto from "crypto";
 
 export const validateUniqueEmail = async (email: string) => {
   const user = await prisma.user.findFirst({
@@ -89,4 +90,23 @@ export const findUserOrCreateService = async (data: Prisma.UserCreateInput) => {
   });
   if (!user) return prisma.user.create({ data });
   return user;
+};
+
+//this func will generate a random token
+// store it in the databsae
+// return the token
+export const generateAVerificatinoTokenService = async ({
+  userId,
+}: {
+  userId: string;
+}) => {
+  const token = crypto.randomBytes(32).toString("hex");
+  await prisma.token.create({
+    data: {
+      active: true,
+      userId,
+      value: token,
+    },
+  });
+  return token;
 };
