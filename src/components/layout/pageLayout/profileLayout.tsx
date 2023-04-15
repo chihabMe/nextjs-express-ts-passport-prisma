@@ -26,7 +26,7 @@ const ProfileLayout = ({ children }: { children: ReactNode }) => {
           <SettingNavMenuItem text="status" path="/accounts/profile/status" />
         </ul>
       </section>
-      <section>{children}</section>
+      {children}
     </main>
   );
 };
@@ -43,7 +43,7 @@ const SettingNavMenuItem = ({
   const currentPathName = router.pathname;
   const isActive = currentPathName == path ? "border-primary text-primary" : "";
   const defaultClasses = `px-2 py-2 mx-2 capitalize border-b-[3px] transition-all duration-100 ${isActive}
-   hover:border-primary  text-sm font-medium cursor-pointer hover:text-primary`;
+   hover:border-primary  text-sm cursor-pointer hover:text-primary`;
   return (
     <li className={cn(defaultClasses, className)}>
       <Link href={path}>{text}</Link>

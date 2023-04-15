@@ -62,7 +62,7 @@ const HeaderAuthDisplay = () => {
             <DropdownMenu.Separator className="h-px bg-gray-400 dark:bg-bg" />
             <DropdownMenu.Item className="px-4 pt-4 pb-2">
               <Link
-                href="accounts/settings"
+                href="/accounts/profile/settings"
                 className="capitalize hover:text-primary transitino-all duration-all   flex  text-sm font-medium flex gap-2 items-center "
               >
                 <SettingsIcon className="w-4 h-4 text-primary" />
@@ -71,7 +71,7 @@ const HeaderAuthDisplay = () => {
             </DropdownMenu.Item>
             <DropdownMenu.Item className="px-4 py-2">
               <Link
-                href="accounts/settings"
+                href="/accounts/profile/settings"
                 className="capitalize  hover:text-primary transitino-all duration-all   flex  text-sm font-medium flex gap-2 items-center "
               >
                 <LogOutIcon className="w-4 h-4 text-primary" />
