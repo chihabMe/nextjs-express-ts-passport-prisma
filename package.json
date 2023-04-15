@@ -30,6 +30,7 @@
     "@heroicons/react": "^2.0.17",
     "@prisma/client": "^4.12.0",
     "@quixo3/prisma-session-store": "^3.1.11",
+    "@radix-ui/react-dropdown-menu": "^2.0.4",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/bcrypt": "^5.0.0",
     "@types/react": "18.0.31",

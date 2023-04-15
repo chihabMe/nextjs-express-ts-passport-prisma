@@ -17,10 +17,17 @@ const buttonVariants = cva(
         md: "h-12 px-6 py-4 text-[15px]",
         lg: "h-14 px-8 py-6   ",
       },
+      rounded: {
+        default: "rounded-md",
+        sm: "rounded-sm",
+        lg: "rounded-lg",
+        full: "rounded-full",
+      },
     },
     defaultVariants: {
       size: "default",
       variant: "default",
+      rounded: "default",
     },
   }
 );
@@ -36,12 +43,13 @@ const Button = ({
   variant,
   size,
   disabled,
+  rounded,
   children,
   ...props
 }: ButtonProps) => {
   return (
     <button
-      className={cn(buttonVariants({ className, size, variant }))}
+      className={cn(buttonVariants({ className, rounded, size, variant }))}
       disabled={disabled}
       {...props}
     >

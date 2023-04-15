@@ -23,14 +23,16 @@ const HeaderDarkLightThemeToggler = () => {
     <>
       {theme == themes.light ? (
         <Button
+          rounded="full"
           onClick={toggleTheme}
           variant="ghost"
-          className="hover:ring-1 ring-black"
+          className="hover:ring-1 ring-text"
         >
           <MoonIcon className="text-black" />
         </Button>
       ) : (
         <Button
+          rounded="full"
           onClick={toggleTheme}
           variant="ghost"
           className="hover:ring-1 ring-yellow-500"
