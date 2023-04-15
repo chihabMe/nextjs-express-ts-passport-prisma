@@ -9,7 +9,15 @@ import Container from "@/components/wrappers/Container";
 import ToasterWrapper from "@/components/wrappers/ToasterWrapper";
 import Head from "next/head";
 import { ThemeProvider } from "next-themes";
-const MyApp = ({ Component, pageProps }: AppProps) => {
+import { ReactNode } from "react";
+
+type AppWithCustomProps = AppProps & {
+  Component: AppProps["Component"] & {
+    PageLayout?: React.ComponentType<{ children: ReactNode }>;
+  };
+};
+
+const MyApp = ({ Component, pageProps }: AppWithCustomProps) => {
   return (
     <>
       <Head>
@@ -26,7 +34,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             <Container>
               <ToasterWrapper>
                 <Header />
-                <Component {...pageProps} />;
+                {Component.PageLayout && (
+                  <Component.PageLayout>
+                    <Component />
+                  </Component.PageLayout>
+                )}
+                {!Component.PageLayout && <Component {...pageProps} />}
               </ToasterWrapper>
             </Container>
           </Provider>

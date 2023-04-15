@@ -6,6 +6,7 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 import useUser from "@/hooks/use-user";
 import Head from "next/head";
+import ProfileLayout from "@/components/layout/pageLayout/profileLayout";
 
 interface Props {
   profile: IUser;
@@ -57,4 +58,5 @@ const ProfilePage = () => {
 //   }
 // };
 
+ProfilePage.PageLayout = ProfileLayout;
 export default ProfilePage;
