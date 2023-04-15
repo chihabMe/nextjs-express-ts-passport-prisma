@@ -3,6 +3,8 @@ import {
   createUserService,
   findUserByEmail,
   generateAVerificatinoTokenService,
+  generateAVerificationLink,
+  generateVerificationEmailService,
   validateUser,
 } from "../services/accounts.services";
 
@@ -101,6 +103,18 @@ export const sendVerificationEmailController = async (
     }
 
     const token = await generateAVerificatinoTokenService({ userId: user.id });
+    const verificationLink = generateAVerificationLink({
+      host: req.hostname,
+      protocol: req.protocol,
+      token,
+    });
+    console.log("link ", verificationLink);
+    const verificationEmail = generateVerificationEmailService({
+      user,
+      verificationLink,
+    });
+    console.log("---email---");
+    console.log(verificationEmail);
     return res.json(token);
   } catch (err) {
     next(err);

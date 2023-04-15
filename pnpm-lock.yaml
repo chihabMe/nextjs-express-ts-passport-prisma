@@ -13,6 +13,7 @@ specifiers:
   '@types/express-session': ^1.17.7
   '@types/jest': ^29.5.0
   '@types/morgan': ^1.9.4
+  '@types/nodemailer': ^6.4.7
   '@types/passport': ^1.0.12
   '@types/passport-facebook': ^2.1.11
   '@types/passport-google-oauth20': ^2.0.11
@@ -113,6 +114,7 @@ devDependencies:
   '@types/express-session': 1.17.7
   '@types/jest': 29.5.0
   '@types/morgan': 1.9.4
+  '@types/nodemailer': 6.4.7
   '@types/passport': 1.0.12
   '@types/passport-facebook': 2.1.11
   '@types/passport-google-oauth20': 2.0.11
@@ -1550,6 +1552,12 @@ packages:
 
   /@types/node/18.15.10:
     resolution: {integrity: sha512-9avDaQJczATcXgfmMAW3MIWArOO7A+m90vuCFLr8AotWf8igO/mRoYukrk2cqZVtv38tHs33retzHEilM7FpeQ==}
+
+  /@types/nodemailer/6.4.7:
+    resolution: {integrity: sha512-f5qCBGAn/f0qtRcd4SEn88c8Fp3Swct1731X4ryPKqS61/A3LmmzN8zaEz7hneJvpjFbUUgY7lru/B/7ODTazg==}
+    dependencies:
+      '@types/node': 18.15.10
+    dev: true
 
   /@types/nprogress/0.2.0:
     resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}

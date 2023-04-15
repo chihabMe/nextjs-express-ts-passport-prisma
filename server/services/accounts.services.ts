@@ -110,3 +110,39 @@ export const generateAVerificatinoTokenService = async ({
   });
   return token;
 };
+
+export const generateVerificationEmailService = ({
+  user,
+  verificationLink,
+}: {
+  user: User;
+  verificationLink: string;
+}) => {
+  const subject = ` ${user.username} verify your email `;
+  const html = `
+<div>
+<p>
+ hello ${user.username} we sent you this message to verify that you own this
+email ${user.email}
+</p>
+<a href=${verificationLink}>
+    <button  >
+        click to verify
+    </button>
+<a>
+</div>
+`;
+  return { subject, html };
+};
+
+export const generateAVerificationLink = ({
+  protocol,
+  host,
+  token,
+}: {
+  protocol: string;
+  host: string;
+  token: string;
+}) => {
+  return protocol + "://" + host + "/api/accounts/verify/" + token;
+};
