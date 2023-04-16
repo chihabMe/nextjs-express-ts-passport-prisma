@@ -6,8 +6,9 @@ export const toastError = (message: string) => {
     className: "!text-sm ",
   });
 };
-export const toastSuccess = (message: string) => {
+export const toastSuccess = (message: string, duration?: number) => {
   toast.success(message, {
     className: "!text-sm  ",
+    duration,
   });
 };

@@ -30,7 +30,9 @@ const RegistrationPage = () => {
     toast.remove();
     if (!loading && !success && done)
       toastError("please check your credentials");
-    if (!loading && success && done) toastSuccess("registred in successfully");
+    if (!loading && success && done) {
+      toastSuccess("registred successfully please check your email  ", 7000);
+    }
   }, [loading, success]);
   return (
     <main>

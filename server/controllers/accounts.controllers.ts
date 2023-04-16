@@ -49,14 +49,16 @@ export const registerController = async (
       username,
       password: hashPassword(password),
     });
-    const { password: _, ...userWithOutPasssword } = { ...user };
-    jsonRespone = {
-      message: "registred",
-      status: "success",
-      statusCode: httpStatus.CREATED,
-      data: userWithOutPasssword as IUser,
-    };
-    return res.status(jsonRespone.statusCode).json(jsonRespone);
+    // const { password: _, ...userWithOutPasssword } = { ...user };
+    // jsonRespone = {
+    //   message: "registred",
+    //   status: "success",
+    //   statusCode: httpStatus.CREATED,
+    //   data: userWithOutPasssword as IUser,
+    // };
+    // return res.status(jsonRespone.statusCode).json(jsonRespone);
+    req.params.email = email;
+    next();
   } catch (err) {
     next(err);
   }
@@ -118,13 +120,17 @@ export const sendVerificationEmailController = async (
       user,
       verificationLink,
     });
-    const result = await sendVerificationEmail({
+    sendVerificationEmail({
       to: email,
       subject,
       html,
     });
-    console.log(result);
-    return res.json(token);
+    return res.json(
+      successResponse({
+        message: "check your email for the activation link",
+        statusCode: httpStatus.OK,
+      })
+    );
   } catch (err) {
     next(err);
   }
