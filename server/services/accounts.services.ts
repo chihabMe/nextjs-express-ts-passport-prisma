@@ -148,7 +148,7 @@ export const generateAVerificationLink = ({
   const baseHost =
     process.env.NODE_ENV != "production" ? "localhost:3000" : host;
   return (
-    protocol + "://" + baseHost + "/api/accounts/verify/" + userId + "/" + token
+    protocol + "://" + baseHost + "/accounts/verify/" + userId + "/" + token
   );
 };
 

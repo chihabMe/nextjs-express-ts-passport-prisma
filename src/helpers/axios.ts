@@ -2,7 +2,10 @@ import axios from "axios";
 
 //this instance will be used by next getServerSideProps to make requests to the server
 export const axiosServerInstance = axios.create({
-  baseURL: process.env.HOST,
+  baseURL:
+    process.env.NODE_ENV == "production"
+      ? process.env.HOST
+      : "http://localhost:3000",
   timeout: 10000,
 
   withCredentials: true,

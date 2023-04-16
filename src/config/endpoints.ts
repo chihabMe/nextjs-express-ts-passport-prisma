@@ -1,6 +1,7 @@
 //accounts
 export const profileEndpoint = "/api/accounts/me/";
 export const registrationEndpoint = "/api/accounts/register/";
+export const accountVerification = "/api/accounts/verify/";
 
 //auth
 
