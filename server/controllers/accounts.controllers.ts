@@ -1,10 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import {
   createUserService,
+  deleteTokenService,
+  findUniqueTokenService,
   findUserByEmail,
   generateAVerificatinoTokenService,
   generateAVerificationLink,
   generateVerificationEmailService,
+  updateUserService,
   validateUser,
 } from "../services/accounts.services";
 
@@ -17,7 +20,7 @@ import IUser from "../interfaces/IUser";
 import { TypeOf } from "zod";
 
 import { registerationSchema } from "../schemas/auth.schema";
-import { errorResponse } from "../utils/json.response";
+import { errorResponse, successResponse } from "../utils/json.response";
 import { sendVerificationEmailSchema } from "../schemas/accounts.schemas";
 
 export const registerController = async (
@@ -107,6 +110,7 @@ export const sendVerificationEmailController = async (
       host: req.hostname,
       protocol: req.protocol,
       token,
+      userId: user.id,
     });
     console.log("link ", verificationLink);
     const verificationEmail = generateVerificationEmailService({
@@ -119,4 +123,49 @@ export const sendVerificationEmailController = async (
   } catch (err) {
     next(err);
   }
+};
+
+export const verifyVerificationLinkController = async (
+  req: Request<{ token: string; userId: string }>,
+  res: Response
+) => {
+  const userId = req.params.userId;
+  const value = req.params.token;
+  if (!userId || !value)
+    return res.status(httpStatus.BAD_REQUEST).json(
+      errorResponse({
+        message: "invalid link",
+        statusCode: httpStatus.BAD_REQUEST,
+      })
+    );
+  const token = await findUniqueTokenService({
+    userId,
+    value,
+  });
+  if (!token)
+    return res.status(httpStatus.BAD_REQUEST).json(
+      errorResponse({
+        message: "invalid link",
+        statusCode: httpStatus.BAD_REQUEST,
+      })
+    );
+  await updateUserService({
+    where: {
+      id: userId,
+    },
+    data: {
+      verified: true,
+      active: true,
+    },
+  });
+  await deleteTokenService({
+    userId,
+    value,
+  });
+  return res.status(httpStatus.OK).json(
+    successResponse({
+      message: "activated",
+      statusCode: httpStatus.OK,
+    })
+  );
 };

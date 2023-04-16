@@ -3,6 +3,7 @@ import {
   meController,
   registerController,
   sendVerificationEmailController,
+  verifyVerificationLinkController,
 } from "../controllers/accounts.controllers";
 import isAuthMiddleware from "../middlewares/isAuth.middelware";
 
@@ -14,3 +15,4 @@ accountsRouter.get(
   "/send-verification-email/",
   sendVerificationEmailController
 );
+accountsRouter.get("/verify/:userId/:token", verifyVerificationLinkController);

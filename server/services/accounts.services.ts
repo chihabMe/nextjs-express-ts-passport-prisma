@@ -103,7 +103,6 @@ export const generateAVerificatinoTokenService = async ({
   const token = crypto.randomBytes(32).toString("hex");
   await prisma.token.create({
     data: {
-      active: true,
       userId,
       value: token,
     },
@@ -125,7 +124,7 @@ export const generateVerificationEmailService = ({
  hello ${user.username} we sent you this message to verify that you own this
 email ${user.email}
 </p>
-<a href=${verificationLink}>
+<a href="${verificationLink}">
     <button  >
         click to verify
     </button>
@@ -139,10 +138,35 @@ export const generateAVerificationLink = ({
   protocol,
   host,
   token,
+  userId,
 }: {
   protocol: string;
   host: string;
   token: string;
+  userId: string;
 }) => {
-  return protocol + "://" + host + "/api/accounts/verify/" + token;
+  const baseHost =
+    process.env.NODE_ENV != "production" ? "localhost:3000" : host;
+  return (
+    protocol + "://" + baseHost + "/api/accounts/verify/" + userId + "/" + token
+  );
+};
+
+export const findUniqueTokenService = (
+  params: Prisma.TokenUserIdValueCompoundUniqueInput
+) => {
+  return prisma.token.findUnique({
+    where: {
+      userId_value: params,
+    },
+  });
+};
+export const deleteTokenService = (
+  params: Prisma.TokenUserIdValueCompoundUniqueInput
+) => {
+  return prisma.token.delete({
+    where: {
+      userId_value: params,
+    },
+  });
 };

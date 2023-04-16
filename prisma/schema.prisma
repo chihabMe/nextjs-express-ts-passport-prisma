@@ -30,13 +30,13 @@ model User {
 }
 
 model Token {
-  id     String  @id @default(uuid())
-  value String
-  user   User    @relation(fields: [userId], references: [id])
-  userId String
-  active Boolean @default(true)
+  value     String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime @default(now())
 
-  @@index([userId])
+  @@id([userId, value])
+  @@index([userId, value])
 }
 
 model Profile {
