@@ -22,6 +22,7 @@ import { TypeOf } from "zod";
 import { registerationSchema } from "../schemas/auth.schema";
 import { errorResponse, successResponse } from "../utils/json.response";
 import { sendVerificationEmailSchema } from "../schemas/accounts.schemas";
+import { sendVerificationEmail } from "../lib/email";
 
 export const registerController = async (
   req: Request<any, any, TypeOf<typeof registerationSchema>>,
@@ -113,12 +114,16 @@ export const sendVerificationEmailController = async (
       userId: user.id,
     });
     console.log("link ", verificationLink);
-    const verificationEmail = generateVerificationEmailService({
+    const { html, subject } = generateVerificationEmailService({
       user,
       verificationLink,
     });
-    console.log("---email---");
-    console.log(verificationEmail);
+    const result = await sendVerificationEmail({
+      to: email,
+      subject,
+      html,
+    });
+    console.log(result);
     return res.json(token);
   } catch (err) {
     next(err);

@@ -2,14 +2,13 @@ import nodemailer from "nodemailer";
 import getEmailConfig from "../config/email.config";
 const config = getEmailConfig();
 const transporter = nodemailer.createTransport({
-  host: config.host,
-  port: config.port,
+  service: "gmail",
   auth: {
     user: config.user,
     pass: config.password,
   },
 });
-export const sendMail = transporter.sendMail;
+//export const sendMail = transporter.sendMail;
 export const sendVerificationEmail = ({
   to,
   subject,
@@ -18,10 +17,10 @@ export const sendVerificationEmail = ({
 }: {
   to: string;
   subject: string;
-  text: string;
+  text?: string;
   html?: string;
 }) => {
-  return sendMail({
+  return transporter.sendMail({
     from: config.serverEmail,
     to,
     text,
