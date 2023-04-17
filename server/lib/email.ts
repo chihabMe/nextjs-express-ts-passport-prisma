@@ -1,6 +1,12 @@
 import nodemailer from "nodemailer";
 import getEmailConfig from "../config/email.config";
+import hbs from "nodemailer-express-handlebars";
+import path from "path";
+import { ExpressHandlebars } from "express-handlebars";
+const root = process.cwd() + "/server/views";
 const config = getEmailConfig();
+const engine = new ExpressHandlebars({});
+console.log("root", root);
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -8,23 +14,33 @@ const transporter = nodemailer.createTransport({
     pass: config.password,
   },
 });
+transporter.use(
+  "compile",
+  hbs({
+    viewEngine: engine,
+    viewPath: root,
+    extName: ".hbs",
+  })
+);
 //export const sendMail = transporter.sendMail;
 export const sendVerificationEmail = ({
   to,
   subject,
-  text,
-  html,
+  context,
 }: {
   to: string;
   subject: string;
-  text?: string;
-  html?: string;
+  context: any;
 }) => {
   return transporter.sendMail({
     from: config.serverEmail,
     to,
-    text,
-    html,
     subject,
+    //@ts-ignore
+    context: {
+      ...context,
+      layout: false,
+    },
+    template: "verificationEmail",
   });
 };

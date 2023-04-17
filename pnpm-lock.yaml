@@ -9,11 +9,13 @@ specifiers:
   '@types/bcrypt': ^5.0.0
   '@types/body-parser': ^1.19.2
   '@types/express': ^4.17.17
+  '@types/express-handlebars': ^6.0.0
   '@types/express-mysql-session': ^2.1.3
   '@types/express-session': ^1.17.7
   '@types/jest': ^29.5.0
   '@types/morgan': ^1.9.4
   '@types/nodemailer': ^6.4.7
+  '@types/nodemailer-express-handlebars': ^4.0.2
   '@types/passport': ^1.0.12
   '@types/passport-facebook': ^2.1.11
   '@types/passport-google-oauth20': ^2.0.11
@@ -34,6 +36,7 @@ specifiers:
   eslint: 8.37.0
   eslint-config-next: 13.2.4
   express: ^4.18.2
+  express-handlebars: ^7.0.7
   express-session: ^1.17.3
   formik: ^2.2.9
   helmet: ^6.0.1
@@ -45,6 +48,7 @@ specifiers:
   next-themes: ^0.2.1
   nextjs-progressbar: ^0.0.16
   nodemailer: ^6.9.1
+  nodemailer-express-handlebars: ^6.1.0
   nodemon: ^2.0.22
   passport: ^0.6.0
   passport-facebook: ^3.0.0
@@ -84,6 +88,7 @@ dependencies:
   eslint: 8.37.0
   eslint-config-next: 13.2.4_bcnce6t2n5ss3lv2getliffzhq
   express: 4.18.2
+  express-handlebars: 7.0.7
   express-session: 1.17.3
   formik: 2.2.9_react@18.2.0
   helmet: 6.0.1
@@ -94,6 +99,7 @@ dependencies:
   next-themes: 0.2.1_ld2jel3hspngo3u5lti2kgl2sq
   nextjs-progressbar: 0.0.16_next@13.2.4+react@18.2.0
   nodemailer: 6.9.1
+  nodemailer-express-handlebars: 6.1.0_6zck5lihobe4rh7j342bpoojjq
   passport: 0.6.0
   passport-facebook: 3.0.0
   passport-google-oauth20: 2.0.0
@@ -110,11 +116,13 @@ dependencies:
 devDependencies:
   '@types/body-parser': 1.19.2
   '@types/express': 4.17.17
+  '@types/express-handlebars': 6.0.0
   '@types/express-mysql-session': 2.1.3
   '@types/express-session': 1.17.7
   '@types/jest': 29.5.0
   '@types/morgan': 1.9.4
   '@types/nodemailer': 6.4.7
+  '@types/nodemailer-express-handlebars': 4.0.2
   '@types/passport': 1.0.12
   '@types/passport-facebook': 2.1.11
   '@types/passport-google-oauth20': 2.0.11
@@ -1467,6 +1475,17 @@ packages:
     resolution: {integrity: sha512-t73xJJrvdTjXrn4jLS9VSGRbz0nUY3cl2DMGDU48lKl+HR9dbbjW2A9r3g40VA++mQpy6uuHg33gy7du2BKpog==}
     dev: true
 
+  /@types/express-handlebars/5.3.1:
+    resolution: {integrity: sha512-DSzaERLO4gHb8AqnrL58jzSDyT0yDdl6HqDc+bGz1Hf0nrG1FK30nHGzv8NBEGR8QV9eUGB/YaE0Qj3NjF7siw==}
+    dev: true
+
+  /@types/express-handlebars/6.0.0:
+    resolution: {integrity: sha512-L0G9j7xc9k6FavI9CCUueJf7YHGE5b+gXV4NGGcObTbLqvZ2TwebEsrFb1b8NEc2kDf22Mu+jCDPjvWzfCS0Gw==}
+    deprecated: This is a stub types definition. express-handlebars provides its own type definitions, so you do not need this installed.
+    dependencies:
+      express-handlebars: 7.0.7
+    dev: true
+
   /@types/express-mysql-session/2.1.3:
     resolution: {integrity: sha512-Df6DqYTwvdH+L91Mn03Gv1qqFUUJueKb5fiFY+GbimwOKQuT7m9a5Ao8O7UZ86Cbri7S7yWFmw+fK7o4OP+voQ==}
     dependencies:
@@ -1552,6 +1571,13 @@ packages:
 
   /@types/node/18.15.10:
     resolution: {integrity: sha512-9avDaQJczATcXgfmMAW3MIWArOO7A+m90vuCFLr8AotWf8igO/mRoYukrk2cqZVtv38tHs33retzHEilM7FpeQ==}
+
+  /@types/nodemailer-express-handlebars/4.0.2:
+    resolution: {integrity: sha512-LnKnqgl6C3osQKQDcIxB6P4iS2Iixq+p0ZCC93pzhSRLvo4PgGHmrTFE38ZGrFxc/DyZefYGEsYHSblxJtwuxw==}
+    dependencies:
+      '@types/express-handlebars': 5.3.1
+      '@types/nodemailer': 6.4.7
+    dev: true
 
   /@types/nodemailer/6.4.7:
     resolution: {integrity: sha512-f5qCBGAn/f0qtRcd4SEn88c8Fp3Swct1731X4ryPKqS61/A3LmmzN8zaEz7hneJvpjFbUUgY7lru/B/7ODTazg==}
@@ -2206,6 +2232,11 @@ packages:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
+
+  /brace-expansion/2.0.1:
+    resolution: {integrity: sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==}
+    dependencies:
+      balanced-match: 1.0.2
 
   /braces/3.0.2:
     resolution: {integrity: sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==}
@@ -3105,6 +3136,14 @@ packages:
       jest-util: 29.5.0
     dev: true
 
+  /express-handlebars/7.0.7:
+    resolution: {integrity: sha512-O4jUlkEVvqwyhkcmjWOqAEcV3JbcaGnlyS0oSgI3vyXO59Fco5JJtUboU2VHqv3Em3Q0VFC2VhRsmaUeNCOr5Q==}
+    engines: {node: '>=v16'}
+    dependencies:
+      glob: 10.1.0
+      graceful-fs: 4.2.11
+      handlebars: 4.7.7
+
   /express-session/1.17.3:
     resolution: {integrity: sha512-4+otWXlShYlG1Ma+2Jnn+xgKUZTMJ5QD3YvfilX3AcocOAbIkVylSWEklzALe/+Pu4qV6TYBj5GwOBFfdKqLBw==}
     engines: {node: '>= 0.8.0'}
@@ -3413,6 +3452,15 @@ packages:
     dependencies:
       is-glob: 4.0.3
 
+  /glob/10.1.0:
+    resolution: {integrity: sha512-daGobsYuT0G4hng24B5LbeLNvwKZYRhWyDl3RvqqAGZjJnCopWWK6PWnAGBY1M/vdA63QE+jddhZcYp+74Bq6Q==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      fs.realpath: 1.0.0
+      minimatch: 9.0.0
+      minipass: 5.0.0
+      path-scurry: 1.7.0
+
   /glob/7.1.6:
     resolution: {integrity: sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==}
     dependencies:
@@ -3511,6 +3559,18 @@ packages:
 
   /grapheme-splitter/1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
+
+  /handlebars/4.7.7:
+    resolution: {integrity: sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==}
+    engines: {node: '>=0.4.7'}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.8
+      neo-async: 2.6.2
+      source-map: 0.6.1
+      wordwrap: 1.0.0
+    optionalDependencies:
+      uglify-js: 3.17.4
 
   /has-bigints/1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
@@ -4459,6 +4519,10 @@ packages:
     dependencies:
       yallist: 4.0.0
 
+  /lru-cache/9.0.3:
+    resolution: {integrity: sha512-cyjNRew29d4kbgnz1sjDqxg7qg8NW4s+HQzCGjeon7DV5T2yDije16W9HaUFV1dhVEMh+SjrOcK0TomBmf3Egg==}
+    engines: {node: 14 || >=16.14}
+
   /lucide-react/0.131.0_react@18.2.0:
     resolution: {integrity: sha512-nX0A8rgdOxw61qTFs2PAVBhz6yuQV3gby+hKRE58WH2ny5xZ1XF/JTOHQCqZYlHSuJk4/uAHJ38ghe3IeT1w7Q==}
     peerDependencies:
@@ -4543,9 +4607,14 @@ packages:
     dependencies:
       brace-expansion: 1.1.11
 
+  /minimatch/9.0.0:
+    resolution: {integrity: sha512-0jJj8AvgKqWN05mrwuqi8QYKx1WmYSUoKSxu5Qhs9prezTz10sxAHGNZe9J9cqIJzta8DWsleh2KaVaLl6Ru2w==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      brace-expansion: 2.0.1
+
   /minimist/1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
-    dev: false
 
   /minipass/3.3.6:
     resolution: {integrity: sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw==}
@@ -4558,6 +4627,10 @@ packages:
     resolution: {integrity: sha512-+yQl7SX3bIT83Lhb4BVorMAHVuqsskxRdlmO9kTpyukp8vsm2Sn/fUOV9xlnG8/a5JsypJzap21lz/y3FBMJ8Q==}
     engines: {node: '>=8'}
     dev: false
+
+  /minipass/5.0.0:
+    resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
+    engines: {node: '>=8'}
 
   /minizlib/2.1.2:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
@@ -4620,6 +4693,9 @@ packages:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
     dev: false
+
+  /neo-async/2.6.2:
+    resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
   /next-themes/0.2.1_ld2jel3hspngo3u5lti2kgl2sq:
     resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
@@ -4715,6 +4791,17 @@ packages:
 
   /node-releases/2.0.10:
     resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
+
+  /nodemailer-express-handlebars/6.1.0_6zck5lihobe4rh7j342bpoojjq:
+    resolution: {integrity: sha512-CWhsoDDa5JbvQmOxTOJhISFuUqDLKW0kvL09whIDBnD71P8ykATCQ+xOjQfltXR5qpK15m0AqwE/kHgbYx/zsQ==}
+    engines: {node: 14.* || 16.* || >= 18}
+    peerDependencies:
+      express-handlebars: '>= 6.0.0'
+      nodemailer: '>= 6.0.0'
+    dependencies:
+      express-handlebars: 7.0.7
+      nodemailer: 6.9.1
+    dev: false
 
   /nodemailer/6.9.1:
     resolution: {integrity: sha512-qHw7dOiU5UKNnQpXktdgQ1d3OFgRAekuvbJLcdG5dnEo/GtcTHRYM7+UfJARdOFU9WUQO8OiIamgWPmiSFHYAA==}
@@ -5019,6 +5106,13 @@ packages:
 
   /path-parse/1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
+
+  /path-scurry/1.7.0:
+    resolution: {integrity: sha512-UkZUeDjczjYRE495+9thsgcVgsaCPkaw80slmfVFgllxY+IO8ubTsOpFVjDPROBqJdHfVPUFRHPBV/WciOVfWg==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      lru-cache: 9.0.3
+      minipass: 5.0.0
 
   /path-to-regexp/0.1.7:
     resolution: {integrity: sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ==}
@@ -5636,7 +5730,6 @@ packages:
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /sprintf-js/1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
@@ -6103,6 +6196,13 @@ packages:
     engines: {node: '>=12.20'}
     hasBin: true
 
+  /uglify-js/3.17.4:
+    resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
+    engines: {node: '>=0.8.0'}
+    hasBin: true
+    requiresBuild: true
+    optional: true
+
   /uid-safe/2.1.5:
     resolution: {integrity: sha512-KPHm4VL5dDXKz01UuEd88Df+KzynaohSL9fBh096KWAxSKZQDI2uBrVqtvRM4rwrIrRRKsdLNML/lnaaVSRioA==}
     engines: {node: '>= 0.8'}
@@ -6289,6 +6389,9 @@ packages:
   /word-wrap/1.2.3:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
     engines: {node: '>=0.10.0'}
+
+  /wordwrap/1.0.0:
+    resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
 
   /wrap-ansi/7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}

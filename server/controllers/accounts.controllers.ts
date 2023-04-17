@@ -120,11 +120,15 @@ export const sendVerificationEmailController = async (
       user,
       verificationLink,
     });
-    sendVerificationEmail({
+    const a = sendVerificationEmail({
       to: email,
       subject,
-      html,
+      context: {
+        verificationLink,
+        username: user.username,
+      },
     });
+    console.log(a);
     return res.json(
       successResponse({
         message: "check your email for the activation link",
